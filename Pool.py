@@ -204,3 +204,47 @@ def softmax(raw_preds):
     '''
     out = np.exp(raw_preds) # exponentiate vector of raw predictions
     return out/np.sum(out) # divide the exponentiated vector by its sum. All values in the output sum to 1.
+
+'''Calculating the Loss'''
+def categoricalCrossEntropy(probs, label):
+    '''
+    calculate the categorical cross-entropy loss of the predictions
+    '''
+    return -np.sum(label * np.log(probs)) # Multiply the desired output label by the log of the prediction, then sum all values in the vector
+
+'''This about wraps up the operations that compose a convolutional neural network. Let us join these operations to construct the CNN.'''
+
+
+'''example'''
+'''Step 1: Getting the Data'''
+
+'''The MNIST handwritten digit training and test data can be obtained here. The files store image and label data as tensors, so the files must be read
+ through their bytestream. We define two helper methods to perform the extraction:'''
+
+
+
+def extract_data(filename, num_images, IMAGE_WIDTH):
+    '''
+    Extract images by reading the file bytestream. Reshape the read values into a 3D matrix of dimensions [m, h, w], where m
+    is the number of training examples.
+    '''
+    print('Extracting', filename)
+    with gzip.open(filename) as bytestream:
+        bytestream.read(16)
+        buf = bytestream.read(IMAGE_WIDTH * IMAGE_WIDTH * num_images)
+        data = np.frombuffer(buf, dtype=np.uint8).astype(np.float32)
+        data = data.reshape(num_images, IMAGE_WIDTH*IMAGE_WIDTH)
+        return data
+
+def extract_labels(filename, num_images):
+    '''
+    Extract label into vector of integer values of dimensions [m, 1], where m is the number of images.
+    '''
+    print('Extracting', filename)
+    with gzip.open(filename) as bytestream:
+        bytestream.read(8)
+        buf = bytestream.read(1 * num_images)
+        labels = np.frombuffer(buf, dtype=np.uint8).astype(np.int64)
+    return labels
+
+'''Step 2: Initialize parameters'''
