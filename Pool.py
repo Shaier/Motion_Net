@@ -140,3 +140,6 @@ def convolution(image, filt, bias, s=1):
             out_y += 1
 
     return out
+
+#The filt input is initialized using a standard normal distribution and bias is initialized to be a vector of zeros.
+#After one or two convolutional layers, it is common to reduce the size of the representation produced by the convolutional layer. This reduction in the representation’s size is known as downsampling.
