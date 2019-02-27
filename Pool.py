@@ -143,3 +143,32 @@ def convolution(image, filt, bias, s=1):
 
 #The filt input is initialized using a standard normal distribution and bias is initialized to be a vector of zeros.
 #After one or two convolutional layers, it is common to reduce the size of the representation produced by the convolutional layer. This reduction in the representation’s size is known as downsampling.
+
+def maxpool(image, f=2, s=2):
+    ```
+    Downsample input `image` using a kernel size of `f` and a stride of `s`
+    ```
+    n_c, h_prev, w_prev = image.shape
+
+    # calculate output dimensions after the maxpooling operation.
+    h = int((h_prev - f)/s)+1
+    w = int((w_prev - f)/s)+1
+
+    # create a matrix to hold the values of the maxpooling operation.
+    downsampled = np.zeros((n_c, h, w))
+
+    # slide the window over every part of the image using stride s. Take the maximum value at each step.
+    for i in range(n_c):
+        curr_y = out_y = 0
+        # slide the max pooling window vertically across the image
+        while curr_y + f <= h_prev:
+            curr_x = out_x = 0
+            # slide the max pooling window horizontally across the image
+            while curr_x + f <= w_prev:
+                # choose the maximum value within the window at each step and store it to the output matrix
+                downsampled[i, out_y, out_x] = np.max(image[i, curr_y:curr_y+f, curr_x:curr_x+f])
+                curr_x += s
+                out_x += 1
+            curr_y += s
+            out_y += 1
+    return downsampled
