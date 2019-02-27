@@ -193,3 +193,14 @@ fc = pooled.reshape((nf2 * dim2 * dim2, 1)) # flatten pooled layer
 '''In this code snippet, we gather the dimensions of the previous layer (number of channels and height/width) then use them to flatten the previous
 layer into a fully connected layer. This fully connected layer is proceeded by multiple dense layers of neurons that eventually produce raw predictions:
 '''
+z = w3.dot(fc) + b3 # first dense layer
+z[z<=0] = 0 # pass through ReLU non-linearity
+out = w4.dot(z) + b4 # second dense layer
+
+'''Output Layer'''
+def softmax(raw_preds):
+    '''
+    pass raw predictions through softmax activation function
+    '''
+    out = np.exp(raw_preds) # exponentiate vector of raw predictions
+    return out/np.sum(out) # divide the exponentiated vector by its sum. All values in the output sum to 1.
