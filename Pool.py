@@ -172,3 +172,5 @@ def maxpool(image, f=2, s=2):
             curr_y += s
             out_y += 1
     return downsampled
+#The max pooling operation boils down to a for loop and a couple of while loops. The for-loop is used pass through each layer of the input image, and
+#the while-loops slide the window over every part of the image. At each step, we use NumPy’s max method to obtain the maximum value:
