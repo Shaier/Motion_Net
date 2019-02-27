@@ -140,10 +140,13 @@ def convolution(image, filt, bias, s=1):
             out_y += 1
 
     return out
-
-#The filt input is initialized using a standard normal distribution and bias is initialized to be a vector of zeros.
-#After one or two convolutional layers, it is common to reduce the size of the representation produced by the convolutional layer. This reduction in the representation’s size is known as downsampling.
-
+'''
+The convolution function makes use of a for-loop to convolve all the filters over the image. Within each iteration of the for-loop,
+two while-loops are used to pass the filter over the image. At each step, the filter is multipled element-wise(*) with a section of the input image.
+The result of this element-wise multiplication is then summed to obtain a single value using NumPy’s sum method, and then added with a bias term.
+The filt input is initialized using a standard normal distribution and bias is initialized to be a vector of zeros.
+After one or two convolutional layers, it is common to reduce the size of the representation produced by the convolutional layer. This reduction in the representation’s size is known as downsampling.
+'''
 def maxpool(image, f=2, s=2):
     ```
     Downsample input `image` using a kernel size of `f` and a stride of `s`
@@ -172,5 +175,21 @@ def maxpool(image, f=2, s=2):
             curr_y += s
             out_y += 1
     return downsampled
-#The max pooling operation boils down to a for loop and a couple of while loops. The for-loop is used pass through each layer of the input image, and
-#the while-loops slide the window over every part of the image. At each step, we use NumPy’s max method to obtain the maximum value:
+'''
+The max pooling operation boils down to a for loop and a couple of while loops. The for-loop is used pass through each layer of the input image, and
+the while-loops slide the window over every part of the image. At each step, we use NumPy’s max method to obtain the maximum value:
+After multiple convolutional layers and downsampling operations, the 3D image representation is converted into a feature vector that is passed into a
+Multi-Layer Perceptron, which merely is a neural network with at least three layers. This is referred to as a Fully-Connected Layer.
+'''
+
+################################
+'''HERE I NEED TO CONNECT ALL OF THE IMAGES INTO ONE VECTOR '''
+#############################
+
+'''Fully connected'''
+(nf2, dim2, _) = pooled.shape
+fc = pooled.reshape((nf2 * dim2 * dim2, 1)) # flatten pooled layer
+
+'''In this code snippet, we gather the dimensions of the previous layer (number of channels and height/width) then use them to flatten the previous
+layer into a fully connected layer. This fully connected layer is proceeded by multiple dense layers of neurons that eventually produce raw predictions:
+'''
