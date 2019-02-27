@@ -82,3 +82,27 @@ for i in range(epoch):
     bh += np.sum(d_hiddenlayer, axis=0,keepdims=True) *lr
 
     print (output)
+
+
+
+#####################################################
+# here we get rid of that added dimension and plot the image
+def visualize_cat(model, cat):
+    # Keras expects batches of images, so we have to add a dimension to trick it into being nice
+    cat_batch = np.expand_dims(cat,axis=0)
+    conv_cat = model.predict(cat_batch)
+    conv_cat = np.squeeze(conv_cat, axis=0)
+    plt.imshow(conv_cat)
+
+# Note: matplot lib is pretty inconsistent with how it plots these weird cat arrays.
+# Try running them a couple of times if the output doesn't quite match the blog post results.
+def nice_cat_printer(model, cat):
+    '''prints the cat as a 2d array'''
+    cat_batch = np.expand_dims(cat,axis=0)
+    conv_cat2 = model.predict(cat_batch)
+
+    conv_cat2 = np.squeeze(conv_cat2, axis=0)
+    conv_cat2 = conv_cat2.reshape(conv_cat2.shape[:2])
+
+    plt.imshow(conv_cat2)
+    
