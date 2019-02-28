@@ -248,3 +248,16 @@ def extract_labels(filename, num_images):
     return labels
 
 '''Step 2: Initialize parameters'''
+def initializeFilter(size, scale = 1.0):
+    '''
+    Initialize filter using a normal distribution with and a
+    standard deviation inversely proportional the square root of the number of units
+    '''
+    stddev = scale/np.sqrt(np.prod(size))
+    return np.random.normal(loc = 0, scale = stddev, size = size)
+
+def initializeWeight(size):
+    '''
+    Initialize weights with a random normal distribution
+    '''
+    return np.random.standard_normal(size=size) * 0.01
