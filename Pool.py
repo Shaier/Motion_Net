@@ -31,7 +31,6 @@ wout as weight matrix to the output layer
 bout as bias matrix to the output layer'''
 
 import numpy as np
-
 #Input array
 X=np.array([[1,0,1,0],[1,0,1,1],[0,1,0,1]])
 
