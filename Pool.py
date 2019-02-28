@@ -111,7 +111,7 @@ def nice_cat_printer(model, cat):
 
 
 ###################################################################
-
+###################################################################
 def convolution(image, filt, bias, s=1):
     '''
     Confolves `filt` over `image` using stride `s`
