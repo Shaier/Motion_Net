@@ -86,6 +86,7 @@ for i in range(epoch):
 
 
 #####################################################
+
 # here we get rid of that added dimension and plot the image
 
 def visualize_cat(model, cat):
