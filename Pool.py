@@ -88,7 +88,6 @@ for i in range(epoch):
 #####################################################
 
 # here we get rid of that added dimension and plot the image
-
 def visualize_cat(model, cat):
     # Keras expects batches of images, so we have to add a dimension to trick it into being nice
     cat_batch = np.expand_dims(cat,axis=0)
