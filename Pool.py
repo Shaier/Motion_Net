@@ -560,5 +560,6 @@ regions using mask?
 
 '''suppose:
 matrix a (frame a)
+weights+biases
 
 '''
