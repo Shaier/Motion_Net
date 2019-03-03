@@ -559,7 +559,7 @@ regions using mask?
 
 
 '''suppose:
-matrix a (frame a)
+Flatten matrix a (frame a)
 weights+biases
 FC
 
