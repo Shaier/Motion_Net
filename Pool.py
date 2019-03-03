@@ -556,3 +556,8 @@ place image-net-image-net-...-output
 calculate the error for every image to net
 regions using mask?
 '''
+
+
+'''suppose:
+
+'''
