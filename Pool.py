@@ -551,6 +551,6 @@ def train(num_classes = 10, lr = 0.01, beta1 = 0.95, beta2 = 0.99, img_dim = 28,
 ############################
 '''
 Need to:
-get features using cnn
+get features using cnn (can use pre trained model)
 place image-net-image-net-...-output
 '''
