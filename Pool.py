@@ -61,11 +61,11 @@ bout=np.random.uniform(size=(1,output_neurons))
 for i in range(epoch):
 
     #Forward Propogation
-    hidden_layer_input1=np.dot(X,wh)
-    hidden_layer_input=hidden_layer_input1 + bh
+    hidden_layer_input=np.dot(X,wh) +bh
+    #hidden_layer_input=hidden_layer_input1 + bh
     hiddenlayer_activations = sigmoid(hidden_layer_input)
-    output_layer_input1=np.dot(hiddenlayer_activations,wout)
-    output_layer_input= output_layer_input1+ bout
+    output_layer_input=np.dot(hiddenlayer_activations,wout) +bout 
+    #output_layer_input= output_layer_input1+ bout
     output = sigmoid(output_layer_input)
 
     #Backpropagation
@@ -555,13 +555,15 @@ get features using cnn (can use pre trained model)
 place image-net-image-net-...-output
 calculate the error for every image to net
 regions using mask?
+
+Maybe just use Sequential()?
+
 '''
+
 
 
 '''suppose:
 Flatten matrix a (frame a)
 weights+biases
 FC
-
-
 '''
