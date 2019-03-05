@@ -765,7 +765,7 @@ branch2.add(Dense(X2.shape[1], init = 'normal', activation = 'relu', W_constrain
 branch2.add(BatchNormalization())
 
 model = Sequential()
-model.add(Merge([branch1, branch2], mode = 'concat'))
+model.add(Merge([branch1, branch2], mode = 'concat')) ###########################################################################################
 model.add(Dense(1, init = 'normal', activation = 'sigmoid'))
 sgd = SGD(lr = 0.1, momentum = 0.9, decay = 0, nesterov = False)
 model.compile(loss = 'binary_crossentropy', optimizer = sgd, metrics = ['accuracy'])
