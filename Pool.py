@@ -816,7 +816,9 @@ def frames(initial_frames, five_frames): '''initial_frames is the first seq, inp
 '''
 every x_i is a sequence of frames- 5 of which is one type of motion, and the other 5 are another (for validation)
 First get the weights by training, then use the weights with the new output to check it.
-so you need to send x1[0],x1[1]...x1[5] to train. then x1[1],x1[2]...x1[6]... and so on until your'e done with x1 frame.
+so you need to send x1[0],x1[1]...x1[5] to train. then x1[1],x1[2]...x1[6]... and so on until you're done with x1 frame.
+Then move to x2[0]...x2[5]... until you're done with x2
+
 '''
 
 def fc1(input,output,num_neurons): '''the input is a frame, output is the next frame, num_neurons is the number of neurons in the layer'''
