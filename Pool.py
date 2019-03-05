@@ -612,3 +612,17 @@ image = load_img('cat.jpg', target_size=(224, 224))
 from keras.preprocessing.image import img_to_array
 # convert the image pixels to a numpy array
 image = img_to_array(image)
+
+#The network expects one or more images as input; that means the input array will need to be 4-dimensional: samples, rows, columns, and channels.
+#We only have one sample (one image). We can reshape the array by calling reshape() and adding the extra dimension.
+
+# reshape data for the model
+image = image.reshape((1, image.shape[0], image.shape[1], image.shape[2]))
+
+
+#Next, the image pixels need to be prepared in the same way as the ImageNet training data was prepared. Specifically, from the paper:
+#The only preprocessing we do is subtracting the mean RGB value, computed on the training set, from each pixel.
+
+from keras.applications.vgg16 import preprocess_input
+# prepare the image for the VGG model
+image = preprocess_input(image)
