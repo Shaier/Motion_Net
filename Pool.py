@@ -838,13 +838,8 @@ def fc2(input, output, num_neurons): '''lets say the input is already flat'''
     model.add(Dense(num_neurons, input_dim=input, activation='relu'))
     model.add(Dense(output, activation='softmax'))
 
-    model = Sequential()
-    model.add(Dense(num_neurons, input_dim=input, activation='relu'))
-    model.add(Dense(output, activation='softmax'))
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.fit(X, Y, epochs=150, batch_size=10)
 
-
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-    model.fit(X, Y, epochs=150, batch_size=10)
-
-    scores = model.evaluate(X, Y)
-    print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
+scores = model.evaluate(X, Y)
+print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
