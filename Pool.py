@@ -826,12 +826,17 @@ from keras.layers import Dense
 import numpy
 
 def fc2(input, output, num_neurons): '''lets say the input is already flat'''
+
     model = Sequential()
     model.add(Dense(num_neurons, input_dim=input, activation='relu'))
     model.add(Dense(output, activation='softmax'))
 
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model = Sequential()
+    model.add(Dense(num_neurons, input_dim=input, activation='relu'))
+    model.add(Dense(output, activation='softmax'))
 
+
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     model.fit(X, Y, epochs=150, batch_size=10)
 
     scores = model.evaluate(X, Y)
