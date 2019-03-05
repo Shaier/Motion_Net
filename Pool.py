@@ -723,6 +723,21 @@ for x in data:
   plt.imshow(data[x].reshape((64, 64)), cmap=cm.Greys_r)
   plt.show()
 
+
+'''An Example of Merge Layer in Keras'''
+                                               InputLayer (None, 6)
+                                                    Dense (None, 6)
+                                       BatchNormalization (None, 6)
+                                                    Dense (None, 6)
+        InputLayer (None, 4)           BatchNormalization (None, 6)
+             Dense (None, 4)                        Dense (None, 6)
+BatchNormalization (None, 4)           BatchNormalization (None, 6)
+                   \____________________________________/
+                                     |
+                                Merge (None, 10)
+                                Dense (None, 1)
+
+
 ###########################################
 ''''Loading VGG'''
 from keras.applications.vgg16 import VGG16
@@ -782,3 +797,8 @@ def fc2(input, output, num_neurons): '''lets say the input is already flat'''
     model.add(Dense(output, activation='softmax'))
 
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+    model.fit(X, Y, epochs=150, batch_size=10)
+
+    scores = model.evaluate(X, Y)
+    print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
