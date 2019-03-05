@@ -818,6 +818,7 @@ every x_i is a sequence of frames- 5 of which is one type of motion, and the oth
 First get the weights by training, then use the weights with the new output to check it.
 so you need to send x1[0],x1[1]...x1[5] to train. then x1[1],x1[2]...x1[6]... and so on until you're done with x1 frame.
 Then move to x2[0]...x2[5]... until you're done with x2
+check how to split the data in LSTM (since it's a sequence as well)--> maybe just take a few x_i's (x6,x7) for validation and use the other ones for training
 
 '''
 
