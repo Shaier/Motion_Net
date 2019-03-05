@@ -600,3 +600,9 @@ pretrained_model = VGG16(
   input_shape=IN_SHAPE,
   weights='imagenet'
 )
+
+#load the image and resize it
+
+from keras.preprocessing.image import load_img
+# load an image from file
+image = load_img('cat.jpg', target_size=(224, 224))
