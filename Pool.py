@@ -572,3 +572,31 @@ FC
 ''''Loading VGG'''
 from keras.applications.vgg16 import VGG16
 model = VGG16(weights='imagenet', include_top=True)
+model.summary()
+#The VGG() class takes a few arguments that may only interest you if you are looking to use the model in your own project, e.g. for transfer learning.
+
+'''include_top (True): Whether or not to include the output layers for the model. You don’t need these if you are fitting the model on your own problem.
+weights (‘imagenet‘): What weights to load. You can specify None to not load pre-trained weights if you are interested in training the model yourself from scratch.
+input_tensor (None): A new input layer if you intend to fit the model on new data of a different size.
+input_shape (None): The size of images that the model is expected to take if you change the input layer.
+pooling (None): The type of pooling to use when you are training a new set of output layers.
+classes (1000): The number of classes (e.g. size of output vector) for the model.
+'''
+
+#to drop the last layers
+from keras.models import Model
+#Add a layer where input is the output of the  second last layer
+x = Dense(1, activation='sigmoid', name='predictions')(model.layers[-2].output)
+
+
+#Then create the corresponding model
+my_model = Model(input=model.input, output=x)
+my_model.summary()
+
+IN_SHAPE = (256, 256, 3) # image dimensions and RGB channels
+
+pretrained_model = VGG16(
+  include_top=False,
+  input_shape=IN_SHAPE,
+  weights='imagenet'
+)
