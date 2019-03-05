@@ -706,3 +706,21 @@ import pickle
 
 with open('features.pkl', 'rb') as f:
     data = pickle.load(f)
+
+
+import matplotlib.cm as cm
+import matplotlib.pyplot as plt
+
+#plot images
+plt.imshow(data['C100P61ThinF_IMG_20150918_145042_cell_5'].reshape((64, 64)), cmap=cm.Greys_r)
+plt.show()
+
+plt.imshow(data['C100P61ThinF_IMG_20150918_145042_cell_59'].reshape((64, 64)), cmap=cm.Greys_r)
+plt.show()
+
+for x in data:
+  print('this is: ' + str(x))
+  plt.imshow(data[x].reshape((64, 64)), cmap=cm.Greys_r)
+  plt.show()
+
+  
