@@ -813,7 +813,10 @@ def frames(initial_frames, five_frames): '''initial_frames is the first seq, inp
     matrix=[[x1],[x2],[x3],[x4],[x5],[x6],[x7],[x8],[x9],[x10]] #initial_frames
 
 
-'''every x_i is a sequence of frames- 5 of which is one type of motion, and the other 5 are another (for validation)'''
+'''
+every x_i is a sequence of frames- 5 of which is one type of motion, and the other 5 are another (for validation)
+First get the weights by training, then use the weights with the new output to check it 
+'''
 
 def fc1(input,output,num_neurons): '''the input is a frame, output is the next frame, num_neurons is the number of neurons in the layer'''
     #flatten the matrix
