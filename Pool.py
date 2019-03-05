@@ -606,3 +606,9 @@ pretrained_model = VGG16(
 from keras.preprocessing.image import load_img
 # load an image from file
 image = load_img('cat.jpg', target_size=(224, 224))
+
+#convert the pixels to a NumPy array
+
+from keras.preprocessing.image import img_to_array
+# convert the image pixels to a numpy array
+image = img_to_array(image)
