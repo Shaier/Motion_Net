@@ -729,5 +729,5 @@ matrix=[[x1],[x2],[x3],[x4],[x5],[x6],[x7],[x8],[x9],[x10]]
 
 '''every x_i is a sequence of frames- 5 of which is one type of motion, and the other 5 are another (for validation)'''
 
-def fc1(input,output,num_neurons):
+def fc1(input,output,num_neurons): '''the input is a frame, output is the next frame, num_neurons is the number of neurons in the layer'''
     pass
