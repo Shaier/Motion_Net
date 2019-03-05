@@ -626,3 +626,24 @@ image = image.reshape((1, image.shape[0], image.shape[1], image.shape[2]))
 from keras.applications.vgg16 import preprocess_input
 # prepare the image for the VGG model
 image = preprocess_input(image)
+
+#make prediction
+#prediction of the probability of the image belonging to each of the 1000 known object types.
+
+# predict the probability across all output classes
+yhat = model.predict(image)
+
+
+#Interpret Prediction
+
+# return a list of classes and their probabilities in case you would like to present the top 3 objects that may be in the photo.
+#We will just report the first most likely object.
+
+from keras.applications.vgg16 import decode_predictions
+# convert the probabilities to class labels
+label = decode_predictions(yhat)
+# retrieve the most likely result, e.g. highest probability
+#label = label[0][0]
+# print the classification
+#print('%s (%.2f%%)' % (label[1], label[2]*100))
+label
