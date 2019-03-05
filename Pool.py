@@ -760,8 +760,9 @@ def extract_features(directory):
 
 
 
-def frames(five_frames): '''input 5 frames (lets say we get 10 frames per sec) '''
-    matrix=[[x1],[x2],[x3],[x4],[x5],[x6],[x7],[x8],[x9],[x10]]
+def frames(initial_frames, five_frames): '''initial_frames is the first seq, input 5 frames (lets say we get 5 frames per sec)'''
+    matrix=[[x1],[x2],[x3],[x4],[x5],[x6],[x7],[x8],[x9],[x10]] #initial_frames
+
 
 '''every x_i is a sequence of frames- 5 of which is one type of motion, and the other 5 are another (for validation)'''
 
