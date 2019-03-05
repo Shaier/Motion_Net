@@ -701,3 +701,8 @@ features = extract_features(directory)
 print('Extracted Features: %d' % len(features))
 # save to file
 dump(features, open('features.pkl', 'wb'))
+
+import pickle
+
+with open('features.pkl', 'rb') as f:
+    data = pickle.load(f)
