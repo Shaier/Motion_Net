@@ -833,7 +833,6 @@ from keras.layers import Dense
 import numpy
 
 def fc2(input, output, num_neurons): '''lets say the input is already flat'''
-
     model = Sequential()
     model.add(Dense(num_neurons, input_dim=input, activation='relu'))
     model.add(Dense(output, activation='softmax'))
