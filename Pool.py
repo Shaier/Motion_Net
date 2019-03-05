@@ -64,7 +64,7 @@ for i in range(epoch):
     hidden_layer_input=np.dot(X,wh) +bh
     #hidden_layer_input=hidden_layer_input1 + bh
     hiddenlayer_activations = sigmoid(hidden_layer_input)
-    output_layer_input=np.dot(hiddenlayer_activations,wout) +bout 
+    output_layer_input=np.dot(hiddenlayer_activations,wout) +bout
     #output_layer_input= output_layer_input1+ bout
     output = sigmoid(output_layer_input)
 
