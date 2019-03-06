@@ -927,4 +927,7 @@ print(model.summary())
 # plot graph
 plot_model(model, to_file='model.png')
 
-'''perhaps for the inputs I need to put x[0], x[1]...'''
+'''perhaps for the inputs I need to put x[0], x[1]...
+Almost done
+Just need to be able to choose the numbers for the outputs
+'''
