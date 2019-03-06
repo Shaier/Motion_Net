@@ -930,4 +930,7 @@ plot_model(model, to_file='model.png')
 '''perhaps for the inputs I need to put x[0], x[1]...
 Almost done
 Just need to be able to choose the numbers for the outputs
+
+x: Numpy array of training data (if the model has a single input), or list of Numpy arrays (if the model has multiple inputs). If input layers in the model are named, you can also pass a dictionary mapping input names to Numpy arrays.  x can be None (default) if feeding from framework-native tensors (e.g. TensorFlow data tensors).
+
 '''
