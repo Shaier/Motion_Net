@@ -928,3 +928,6 @@ model = Model(inputs=[visible1, visible2], outputs=output)
 print(model.summary())
 # plot graph
 plot_model(model, to_file='multiple_inputs.png')
+
+
+'''perhaps for the inputs I need to put x[0], x[1]...'''
