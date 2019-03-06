@@ -835,6 +835,7 @@ import numpy
 option 2: use Sequential model
 have 10 frames at a time for 10 Sequential models.
 what to do about the weights? every sequential will give me weights
+can I change the output as I go?
 '''
 
 def fc2(input, output, num_neurons): '''lets say the input is already flat'''
