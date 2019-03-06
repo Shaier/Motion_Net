@@ -836,6 +836,10 @@ option 2: use Sequential model
 have 10 frames at a time for 10 Sequential models.
 what to do about the weights? every sequential will give me weights
 can I change the output as I go?
+perhaps split the datasets to x1,x2... where each x_i is a sequence of 10 frames
+(whats difference here is that x1 and x2 can have similar frames)
+ex:
+x1 (f1-f10), x2 (f2-f11)...
 '''
 
 def fc2(input, output, num_neurons): '''lets say the input is already flat'''
