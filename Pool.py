@@ -966,7 +966,7 @@ print(model.summary())
 plot_model(model, to_file='model.png')
 
 #Compile the model
-model.compile(optimizer='adam', loss='mae', metrics=['accuracy'])
+model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
 
 #Fit
 model.fit(x=None, y=None, batch_size=None, epochs=1, verbose=1, callbacks=None, validation_split=0.0, validation_data=None, shuffle=True, class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None, validation_steps=None, validation_freq=1)
