@@ -819,7 +819,6 @@ First get the weights by training, then use the weights with the new output to c
 so you need to send x1[0],x1[1]...x1[5] to train. then x1[1],x1[2]...x1[6]... and so on until you're done with x1 frame.
 Then move to x2[0]...x2[5]... until you're done with x2
 check how to split the data in LSTM (since it's a sequence as well)--> maybe just take a few x_i's (x6,x7) for validation and use the other ones for training
-
 '''
 
 def fc1(input,output,num_neurons): '''the input is a frame, output is the next frame, num_neurons is the number of neurons in the layer'''
@@ -831,6 +830,11 @@ def fc1(input,output,num_neurons): '''the input is a frame, output is the next f
 from keras.models import Sequential
 from keras.layers import Dense
 import numpy
+
+'''
+option 2: use Sequential model
+
+'''
 
 def fc2(input, output, num_neurons): '''lets say the input is already flat'''
     model = Sequential()
