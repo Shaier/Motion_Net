@@ -840,6 +840,8 @@ perhaps split the datasets to x1,x2... where each x_i is a sequence of 10 frames
 (whats difference here is that x1 and x2 can have similar frames)
 ex:
 x1 (f1-f10), x2 (f2-f11)...
+so if i split my data before I dont have to worry about moving frames as I train.
+
 '''
 
 def fc2(input, output, num_neurons): '''lets say the input is already flat'''
