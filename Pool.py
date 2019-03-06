@@ -965,6 +965,10 @@ print(model.summary())
 # plot graph
 plot_model(model, to_file='model.png')
 
+#Compile the model
+model.compile(optimizer='adam', loss='mae', metrics=['accuracy'])
+
+
 '''perhaps for the inputs I need to put x[0], x[1]...
 Almost done
 Just need to be able to choose the numbers for the outputs
