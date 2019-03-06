@@ -903,36 +903,6 @@ from keras.layers import Flatten
 from keras.layers.convolutional import Conv2D
 from keras.layers.pooling import MaxPooling2D
 from keras.layers.merge import concatenate
-<<<<<<< HEAD
-# first input model
-visible1 = Input(shape=(64,64,1))
-conv11 = Conv2D(32, kernel_size=4, activation='relu')(visible1)
-pool11 = MaxPooling2D(pool_size=(2, 2))(conv11)
-conv12 = Conv2D(16, kernel_size=4, activation='relu')(pool11)
-pool12 = MaxPooling2D(pool_size=(2, 2))(conv12)
-flat1 = Flatten()(pool12)
-# second input model
-visible2 = Input(shape=(32,32,3))
-conv21 = Conv2D(32, kernel_size=4, activation='relu')(visible2)
-pool21 = MaxPooling2D(pool_size=(2, 2))(conv21)
-conv22 = Conv2D(16, kernel_size=4, activation='relu')(pool21)
-pool22 = MaxPooling2D(pool_size=(2, 2))(conv22)
-flat2 = Flatten()(pool22)
-# merge input models
-merge = concatenate([flat1, flat2])
-# interpretation model
-hidden1 = Dense(10, activation='relu')(merge)
-hidden2 = Dense(10, activation='relu')(hidden1)
-output = Dense(1, activation='sigmoid')(hidden2)
-model = Model(inputs=[visible1, visible2], outputs=output)
-# summarize layers
-print(model.summary())
-# plot graph
-plot_model(model, to_file='multiple_inputs.png')
-
-
-'''perhaps for the inputs I need to put x[0], x[1]...'''
-=======
 
 # 1st input model
 frame1 = Input(shape=(784,1))
@@ -1013,4 +983,3 @@ If input layers in the model are named, you can also pass a dictionary mapping i
 y: Numpy array of target (label) data (if the model has a single output), or list of Numpy arrays (if the model has multiple outputs). If output layers in the model are named, you can also pass a dictionary mapping output names to Numpy arrays.  y can be None (default) if feeding from framework-native tensors (e.g. TensorFlow data tensors).
 
 '''
->>>>>>> CNN
