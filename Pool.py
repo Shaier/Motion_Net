@@ -989,4 +989,7 @@ model.fit([train1,train2,train3,train4,train5,train6,train7,train8,train9],[oupu
 where
 train1=[frame1,frame2...frame_N-9]
 train2=[frame2,frame3...frame_N-8]
+...
+train9=[frame9,frame10...frame_N-1] #Note that we go up to N-1 because we need the last frame to be an output
+
 '''
