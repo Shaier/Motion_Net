@@ -984,4 +984,9 @@ y: Numpy array of target (label) data (if the model has a single output), or lis
 
 model.fit([train_X_hour, train_X_port], [train_Y_hour, train_Y_port] epochs=10 batch_size=1, verbose=2, shuffle=False)
 
+so Maybe
+model.fit([train1,train2,train3,train4,train5,train6,train7,train8,train9],[ouput1,output2,output3,ouput4,output5,output6,ouput7,output8,output9],...)
+where
+train1=[frame1,frame2...frame_N-9]
+train2=[frame2,frame3...frame_N-8]
 '''
