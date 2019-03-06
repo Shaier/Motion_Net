@@ -974,7 +974,7 @@ model.fit(x=None, y=None, batch_size=None, epochs=1, verbose=1, callbacks=None, 
 #y=list of Numpy arrays of target (label) data
 
 '''perhaps for the inputs I need to put x[0], x[1]...
-Almost done
+Almost done.
 Just need to be able to choose the numbers for the outputs
 
 x: Numpy array of training data (if the model has a single input)==> x= [ [image1],[image2]...]
