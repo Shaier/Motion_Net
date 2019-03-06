@@ -891,3 +891,40 @@ hidden = Dense(2)(visible)
 #   from your created layers. It requires that you only specify the
 #   input and output layers. For example:
 model = Model(inputs=visible, outputs=hidden)
+
+
+'''new architecture'''
+# Multiple Inputs
+from keras.utils import plot_model
+from keras.models import Model
+from keras.layers import Input
+from keras.layers import Dense
+from keras.layers import Flatten
+from keras.layers.convolutional import Conv2D
+from keras.layers.pooling import MaxPooling2D
+from keras.layers.merge import concatenate
+
+# first input model
+frame1 = Input(shape=(784,1))
+hidden1 = Dense(100, activation='relu')(frame1)
+hidden1 = Dense(100, activation='relu')(frame1)
+output1 = Dense(784, activation='softmax')(hidden1) #frame 2 is output 1
+
+# second input model
+frame2 = Input(shape=(784,1))
+hidden2 = Dense(100, activation='relu')(frame2)
+output2 = Dense(784, activation='softmax')(hidden2) #frame 3 is output 2
+
+# third input model
+frame3 = Input(shape=(784,1))
+hidden3 = Dense(100, activation='relu')(frame3)
+output3 = Dense(784, activation='softmax')(hidden3) #frame 4 is output 3
+
+model = Model(inputs=[frame1, frame2, frame3], outputs=[output1, output2, output3])
+
+# summarize layers
+print(model.summary())
+# plot graph
+plot_model(model, to_file='model.png')
+
+'''perhaps for the inputs I need to put x[0], x[1]...'''
