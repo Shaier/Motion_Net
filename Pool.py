@@ -978,7 +978,7 @@ Almost done
 Just need to be able to choose the numbers for the outputs
 
 x: Numpy array of training data (if the model has a single input)==> x= [ [image1],[image2]...]
-or list of Numpy arrays (if the model has multiple inputs) ==> x= [ [[f1],[f2]...[f9]], [[f2],[f3]...[f10]] ]
+or list of Numpy arrays (if the model has multiple inputs) ==> x= [ [ [f1],[f2]...[f9] ], [ [f2],[f3]...[f10] ] ]
 If input layers in the model are named, you can also pass a dictionary mapping input names to Numpy arrays.  x can be None (default) if feeding from framework-native tensors (e.g. TensorFlow data tensors).
 y: Numpy array of target (label) data (if the model has a single output), or list of Numpy arrays (if the model has multiple outputs). If output layers in the model are named, you can also pass a dictionary mapping output names to Numpy arrays.  y can be None (default) if feeding from framework-native tensors (e.g. TensorFlow data tensors).
 
