@@ -848,3 +848,40 @@ model.fit(X, Y, epochs=150, batch_size=10)
 
 scores = model.evaluate(X, Y)
 print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
+
+
+'''Keras Functional model'''
+from keras.models import Model
+from keras.layers import Input
+from keras.layers import Dense
+
+# Define the input
+#   Unlike the Sequential model, you must create and define
+#   a standalone "Input" layer that specifies the shape of input
+#   data. The input layer takes a "shape" argument, which is a
+#   tuple that indicates the dimensionality of the input data.
+#   When input data is one-dimensional, such as the MLP, the shape
+#   must explicitly leave room for the shape of the mini-batch size
+#   used when splitting the data when training the network. Hence,
+#   the shape tuple is always defined with a hanging last dimension.
+#   For instance, "(2,)", as in the example below:
+visible = Input(shape=(2,))
+
+# Connecting layers
+#   The layers in the model are connected pairwise.
+#   This is done by specifying where the input comes from when
+#   defining each new layer. A bracket notation is used, such that
+#   after the layer is created, the layer from which the input to
+#   the current layer comes from is specified.
+#   Note how the "visible" layer connects to the "Dense" layer:
+hidden = Dense(2)(visible)
+
+# Create the model
+#   After creating all of your model layers and connecting them
+#   together, you must then define the model.
+#   As with the Sequential API, the model is the thing that you can
+#   summarize, fit, evaluate, and use to make predictions.
+#   Keras provides a "Model" class that you can use to create a model
+#   from your created layers. It requires that you only specify the
+#   input and output layers. For example:
+model = Model(inputs=visible, outputs=hidden)
