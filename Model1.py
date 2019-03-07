@@ -193,6 +193,8 @@ Fine-tune hyperparameters and unfreeze more layers as needed
 once you got the features move on to the next stage of using ROI --? Maybe not ROI?
 the ROI will select the objects to use the CNN on
 
+Maybe train on the entire image, and then use ROI on test data
+
 
 '''
 
