@@ -1,48 +1,47 @@
 # Model 2
-#Idea here: Get the weights, run the new frames on the weights and predict class 1
 
 # 1st input model
-frame1 = Input(shape=(784,1))
+frame1 = Input(shape=(360, 480, 3))
 hidden1 = Dense(30, activation='relu')(frame1)
 hidden1 = Dense(30, activation='relu')(hidden1)
 
 # 2nd input model
-frame2 = Input(shape=(784,1))
+frame2 = Input(shape=(360, 480, 3))
 hidden2 = Dense(30, activation='relu')(frame2)
 hidden2 = Dense(30, activation='relu')(hidden2)
 
 # 3rd input model
-frame3 = Input(shape=(784,1))
+frame3 = Input(shape=(360, 480, 3))
 hidden3 = Dense(30, activation='relu')(frame3)
 hidden3 = Dense(30, activation='relu')(hidden3)
 
 # 4th input model
-frame4 = Input(shape=(784,1))
+frame4 = Input(shape=(360, 480, 3))
 hidden4 = Dense(30, activation='relu')(frame4)
 hidden4 = Dense(30, activation='relu')(hidden4)
 
 # 5th input model
-frame5 = Input(shape=(784,1))
+frame5 = Input(shape=(360, 480, 3))
 hidden5 = Dense(30, activation='relu')(frame5)
 hidden5 = Dense(30, activation='relu')(hidden5)
 
 # 6th input model
-frame6 = Input(shape=(784,1))
+frame6 = Input(shape=(360, 480, 3))
 hidden6 = Dense(30, activation='relu')(frame6)
 hidden6 = Dense(30, activation='relu')(hidden6)
 
 # 7th input model
-frame7 = Input(shape=(784,1))
+frame7 = Input(shape=(360, 480, 3))
 hidden7 = Dense(30, activation='relu')(frame7)
 hidden7 = Dense(30, activation='relu')(hidden7)
 
 # 8th input model
-frame8 = Input(shape=(784,1))
+frame8 = Input(shape=(360, 480, 3))
 hidden8 = Dense(30, activation='relu')(frame8)
 hidden8 = Dense(30, activation='relu')(hidden8)
 
 # 9th input model
-frame9 = Input(shape=(784,1))
+frame9 = Input(shape=(360, 480, 3))
 hidden9 = Dense(30, activation='relu')(frame9)
 hidden9 = Dense(30, activation='relu')(hidden9)
 
@@ -55,12 +54,22 @@ hidden10 = Dense(10, activation='relu')(merge)
 # prediction output
 output = Dense(1, activation='sigmoid')(hidden10)
 
-model = Model(inputs=[frame1, frame2, frame3,frame4, frame5, frame6,frame7, frame8, frame9], outputs=output)
+model2 = Model(inputs=[frame1, frame2, frame3,frame4, frame5, frame6,frame7, frame8, frame9], outputs=output)
 
 # summarize layers
-print(model.summary())
+print(model2.summary())
 # plot graph
-plot_model(model, to_file='model2.png')
+plot_model(model2, to_file='model2.png')
+
+#Compile the model
+model2.compile(optimizer='adam', loss='mse', metrics=['accuracy'])
+
+#Fit
+model2.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,train9],
+          y=[],
+          batch_size=1, steps_per_epoch=100, epochs=10, verbose=0, validation_split=0.2, shuffle=False)
+#x=list of Numpy arrays of training data (x=[ [[f1],[f2]...[f9]], [[f2],[f3]...[f10]] ])
+#y=list of Numpy arrays of target (label) data
 
 ################
 #Load the data
