@@ -195,6 +195,8 @@ the ROI will select the objects to use the CNN on
 
 Maybe train on the entire image, and then use ROI on test data
 
+### A problem: using CNN on the input but trying to predict an output that is the actual image and not features 
+
 
 '''
 
