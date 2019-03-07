@@ -111,7 +111,6 @@ output9=[frame10,frame11...frame_N] #Note that we go up to N because the last fr
 
 '''
 
-
 #Load the data
 
 #folder with images
