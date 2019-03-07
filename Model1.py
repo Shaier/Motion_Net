@@ -1,7 +1,8 @@
 # Multiple Inputs
 
-#Idea here: Get the weights, run the new frames on the weights, if the loss<threshhold == class 1
-
+'''Idea here: Get the weights, run the new frames on the weights, if the loss<threshhold == class 1
+THIS MODEL IS MEANT TO ONLY WORK ON ONE MOVEMENT 
+'''
 # 1st input model
 frame1 = Input(shape=(360, 480, 3))
 flat= Flatten()(frame1)
