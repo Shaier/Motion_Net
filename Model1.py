@@ -1,69 +1,69 @@
-'''new architecture'''
+# Multiple Inputs
+
 #Idea here: Get the weights, run the new frames on the weights, if the loss<threshhold == class 1
 
-# Multiple Inputs
-from keras.utils import plot_model
-from keras.models import Model
-from keras.layers import Input
-from keras.layers import Dense
-from keras.layers import Flatten
-from keras.layers.convolutional import Conv2D
-from keras.layers.pooling import MaxPooling2D
-from keras.layers.merge import concatenate
-
 # 1st input model
-frame1 = Input(shape=(784,1))
-hidden1 = Dense(30, activation='relu')(frame1)
+frame1 = Input(shape=(360, 480, 3))
+flat= Flatten()(frame1)
+hidden1 = Dense(30, activation='relu')(flat)
 hidden1 = Dense(30, activation='relu')(hidden1)
-output1 = Dense(784, activation='linear')(hidden1) #frame 2 is output 1
+output1 = Dense(518400, activation='linear')(hidden1) #frame 2 is output 1
 
 # 2nd input model
-frame2 = Input(shape=(784,1))
-hidden2 = Dense(30, activation='relu')(frame2)
+frame2 = Input(shape=(360, 480, 3))
+flat= Flatten()(frame2)
+hidden2 = Dense(30, activation='relu')(flat)
 hidden2 = Dense(30, activation='relu')(hidden2)
-output2 = Dense(784, activation='linear')(hidden2) #frame 3 is output 2
+output2 = Dense(518400, activation='linear')(hidden2) #frame 3 is output 2
 
 # 3rd input model
-frame3 = Input(shape=(784,1))
-hidden3 = Dense(30, activation='relu')(frame3)
+frame3 = Input(shape=(360, 480, 3))
+flat= Flatten()(frame3)
+hidden3 = Dense(30, activation='relu')(flat)
 hidden3 = Dense(30, activation='relu')(hidden3)
-output3 = Dense(784, activation='linear')(hidden3) #frame 4 is output 3
+output3 = Dense(518400, activation='linear')(hidden3) #frame 4 is output 3
 
 # 4th input model
-frame4 = Input(shape=(784,1))
-hidden4 = Dense(30, activation='relu')(frame4)
+frame4 = Input(shape=(360, 480, 3))
+flat= Flatten()(frame4)
+hidden4 = Dense(30, activation='relu')(flat)
 hidden4 = Dense(30, activation='relu')(hidden4)
-output4 = Dense(784, activation='linear')(hidden4) #frame 5 is output 4
+output4 = Dense(518400, activation='linear')(hidden4) #frame 5 is output 4
 
 # 5th input model
-frame5 = Input(shape=(784,1))
-hidden5 = Dense(30, activation='relu')(frame5)
+frame5 = Input(shape=(360, 480, 3))
+flat= Flatten()(frame5)
+hidden5 = Dense(30, activation='relu')(flat)
 hidden5 = Dense(30, activation='relu')(hidden5)
-output5 = Dense(784, activation='softmax')(hidden5) #frame 6 is output 5
+output5 = Dense(518400, activation='linear')(hidden5) #frame 6 is output 5
 
 # 6th input model
-frame6 = Input(shape=(784,1))
-hidden6 = Dense(30, activation='relu')(frame6)
+frame6 = Input(shape=(360, 480, 3))
+flat= Flatten()(frame6)
+hidden6 = Dense(30, activation='relu')(flat)
 hidden6 = Dense(30, activation='relu')(hidden6)
-output6 = Dense(784, activation='linear')(hidden6) #frame 7 is output 6
+output6 = Dense(518400, activation='linear')(hidden6) #frame 7 is output 6
 
 # 7th input model
-frame7 = Input(shape=(784,1))
-hidden7 = Dense(30, activation='relu')(frame7)
+frame7 = Input(shape=(360, 480, 3))
+flat= Flatten()(frame7)
+hidden7 = Dense(30, activation='relu')(flat)
 hidden7 = Dense(30, activation='relu')(hidden7)
-output7 = Dense(784, activation='linear')(hidden7) #frame 8 is output 7
+output7 = Dense(518400, activation='linear')(hidden7) #frame 8 is output 7
 
 # 8th input model
-frame8 = Input(shape=(784,1))
-hidden8 = Dense(30, activation='relu')(frame8)
+frame8 = Input(shape=(360, 480, 3))
+flat= Flatten()(frame8)
+hidden8 = Dense(30, activation='relu')(flat)
 hidden8 = Dense(30, activation='relu')(hidden8)
-output8 = Dense(784, activation='linear')(hidden8) #frame 9 is output 8
+output8 = Dense(518400, activation='linear')(hidden8) #frame 9 is output 8
 
 # 9th input model
-frame9 = Input(shape=(784,1))
-hidden9 = Dense(30, activation='relu')(frame9)
+frame9 = Input(shape=(360, 480, 3))
+flat= Flatten()(frame9)
+hidden9 = Dense(30, activation='relu')(flat)
 hidden9 = Dense(30, activation='relu')(hidden9)
-output9 = Dense(784, activation='linear')(hidden9) #frame 10 is output 9
+output9 = Dense(518400, activation='linear')(hidden9) #frame 10 is output 9
 
 model = Model(inputs=[frame1, frame2, frame3,frame4, frame5, frame6,frame7, frame8, frame9], outputs=[output1, output2, output3,output4, output5, output6, output7,output8, output9])
 
