@@ -112,3 +112,12 @@ output6=images_array[6:-3]
 output7=images_array[7:-2]
 output8=images_array[8:-1]
 output9=images_array[9:]
+
+
+
+'''
+### A problem: using CNN on the input but trying to predict an output that is the actual image and not features
+Ill need to run the CNN on the entire dataset first, then put the arrays in the input/output 
+
+
+'''
