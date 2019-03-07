@@ -908,25 +908,25 @@ from keras.layers.merge import concatenate
 frame1 = Input(shape=(784,1))
 hidden1 = Dense(30, activation='relu')(frame1)
 hidden1 = Dense(30, activation='relu')(hidden1)
-output1 = Dense(784, activation='softmax')(hidden1) #frame 2 is output 1
+output1 = Dense(784, activation='linear')(hidden1) #frame 2 is output 1
 
 # 2nd input model
 frame2 = Input(shape=(784,1))
 hidden2 = Dense(30, activation='relu')(frame2)
 hidden2 = Dense(30, activation='relu')(hidden2)
-output2 = Dense(784, activation='softmax')(hidden2) #frame 3 is output 2
+output2 = Dense(784, activation='linear')(hidden2) #frame 3 is output 2
 
 # 3rd input model
 frame3 = Input(shape=(784,1))
 hidden3 = Dense(30, activation='relu')(frame3)
 hidden3 = Dense(30, activation='relu')(hidden3)
-output3 = Dense(784, activation='softmax')(hidden3) #frame 4 is output 3
+output3 = Dense(784, activation='linear')(hidden3) #frame 4 is output 3
 
 # 4th input model
 frame4 = Input(shape=(784,1))
 hidden4 = Dense(30, activation='relu')(frame4)
 hidden4 = Dense(30, activation='relu')(hidden4)
-output4 = Dense(784, activation='softmax')(hidden4) #frame 5 is output 4
+output4 = Dense(784, activation='linear')(hidden4) #frame 5 is output 4
 
 # 5th input model
 frame5 = Input(shape=(784,1))
@@ -938,25 +938,25 @@ output5 = Dense(784, activation='softmax')(hidden5) #frame 6 is output 5
 frame6 = Input(shape=(784,1))
 hidden6 = Dense(30, activation='relu')(frame6)
 hidden6 = Dense(30, activation='relu')(hidden6)
-output6 = Dense(784, activation='softmax')(hidden6) #frame 7 is output 6
+output6 = Dense(784, activation='linear')(hidden6) #frame 7 is output 6
 
 # 7th input model
 frame7 = Input(shape=(784,1))
 hidden7 = Dense(30, activation='relu')(frame7)
 hidden7 = Dense(30, activation='relu')(hidden7)
-output7 = Dense(784, activation='softmax')(hidden7) #frame 8 is output 7
+output7 = Dense(784, activation='linear')(hidden7) #frame 8 is output 7
 
 # 8th input model
 frame8 = Input(shape=(784,1))
 hidden8 = Dense(30, activation='relu')(frame8)
 hidden8 = Dense(30, activation='relu')(hidden8)
-output8 = Dense(784, activation='softmax')(hidden8) #frame 9 is output 8
+output8 = Dense(784, activation='linear')(hidden8) #frame 9 is output 8
 
 # 9th input model
 frame9 = Input(shape=(784,1))
 hidden9 = Dense(30, activation='relu')(frame9)
 hidden9 = Dense(30, activation='relu')(hidden9)
-output9 = Dense(784, activation='softmax')(hidden9) #frame 10 is output 9
+output9 = Dense(784, activation='linear')(hidden9) #frame 10 is output 9
 
 model = Model(inputs=[frame1, frame2, frame3,frame4, frame5, frame6,frame7, frame8, frame9], outputs=[output1, output2, output3,output4, output5, output6, output7,output8, output9])
 
@@ -966,7 +966,7 @@ print(model.summary())
 plot_model(model, to_file='model.png')
 
 #Compile the model
-model.compile(optimizer='adam', loss='categorical_crossentropy ', metrics=['accuracy'])
+model.compile(optimizer='adam', loss='mean_absolute_error ', metrics=['accuracy'])
 
 #Fit
 model.fit(x=None, y=None, batch_size=None, epochs=1, verbose=1, callbacks=None, validation_split=0.0, validation_data=None, shuffle=False, class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None, validation_steps=None, validation_freq=1)
