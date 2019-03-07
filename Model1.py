@@ -1,4 +1,11 @@
 # Multiple Inputs
+'''
+Names:
+4D CNN
+Motion CNN
+movement CNN
+
+'''
 
 '''Idea here: Get the weights, run the new frames on the weights, if the loss<threshhold == class 1
 THIS MODEL IS MEANT TO ONLY WORK ON ONE MOVEMENT
