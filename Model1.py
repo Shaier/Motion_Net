@@ -76,10 +76,11 @@ plot_model(model, to_file='model.png')
 model.compile(optimizer='adam', loss='mean_absolute_error ', metrics=['accuracy'])
 
 #Fit
-model.fit(x=None, y=None, batch_size=None, epochs=1, verbose=1, callbacks=None, validation_split=0.0, validation_data=None, shuffle=False, class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None, validation_steps=None, validation_freq=1)
+model.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,train9],
+          y=[y1,y2,y3,y4,y5,y6,y7,y8,y9],
+          batch_size=1, steps_per_epoch=100, epochs=10, verbose=0, validation_split=0.2, shuffle=False)
 #x=list of Numpy arrays of training data (x=[ [[f1],[f2]...[f9]], [[f2],[f3]...[f10]] ])
-#y=list of Numpy arrays of target (label) data
-
+#y=list of Numpy arrays of target (label) data 
 '''perhaps for the inputs I need to put x[0], x[1]...
 Almost done.
 Just need to be able to choose the numbers for the outputs
