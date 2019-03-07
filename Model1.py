@@ -190,7 +190,7 @@ Add custom classifier with several layers of trainable parameters to model
 Train classifier layers on training data available for task
 Fine-tune hyperparameters and unfreeze more layers as needed
 
-once you got the features move on to the next stage of using ROI
+once you got the features move on to the next stage of using ROI --? Maybe not ROI?
 the ROI will select the objects to use the CNN on
 
 
