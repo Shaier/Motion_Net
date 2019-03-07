@@ -894,6 +894,8 @@ model = Model(inputs=visible, outputs=hidden)
 
 
 '''new architecture'''
+#Idea here: Get the weights, run the new frames on the weights, if the loss<threshhold == class 1
+
 # Multiple Inputs
 from keras.utils import plot_model
 from keras.models import Model
@@ -1001,6 +1003,7 @@ output9=[frame10,frame11...frame_N] #Note that we go up to N because the last fr
 '''
 
 # Model 2
+#Idea here: Get the weights, run the new frames on the weights and predict class 1
 
 # 1st input model
 frame1 = Input(shape=(784,1))
