@@ -167,3 +167,15 @@ flat(y6)
 flat(y7)
 flat(y8)
 flat(y9)
+
+
+
+'''
+plan:
+get the features from the images using a pre trained model
+save them into the arrays of training/output
+run the model again
+
+
+
+'''
