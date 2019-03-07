@@ -1,7 +1,7 @@
 # Multiple Inputs
 
 '''Idea here: Get the weights, run the new frames on the weights, if the loss<threshhold == class 1
-THIS MODEL IS MEANT TO ONLY WORK ON ONE MOVEMENT 
+THIS MODEL IS MEANT TO ONLY WORK ON ONE MOVEMENT
 '''
 # 1st input model
 frame1 = Input(shape=(360, 480, 3))
@@ -176,6 +176,12 @@ plan:
 get the features from the images using a pre trained model
 save them into the arrays of training/output
 run the model again
+
+Load in a pre-trained CNN model trained on a large dataset
+Freeze parameters (weights) in model’s lower convolutional layers
+Add custom classifier with several layers of trainable parameters to model
+Train classifier layers on training data available for task
+Fine-tune hyperparameters and unfreeze more layers as needed
 
 
 
