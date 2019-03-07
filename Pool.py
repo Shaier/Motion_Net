@@ -1067,3 +1067,44 @@ model = Model(inputs=[frame1, frame2, frame3,frame4, frame5, frame6,frame7, fram
 print(model.summary())
 # plot graph
 plot_model(model, to_file='model2.png')
+
+################
+#Load the data
+
+#folder with images
+image_dir=os.listdir('video')
+#create a list to hold the array of pixels of each image
+images_array=[]
+#place the pixels for each image in the list
+for image in image_dir:
+    images_array.append(mpimg.imread('video/'+str(image)))
+
+train1=[]
+train2=[]
+train3=[]
+train4=[]
+train5=[]
+train6=[]
+train7=[]
+train8=[]
+train9=[]
+
+train1=images_array[:-9]
+train2=images_array[1:-8]
+train3=images_array[2:-7]
+train4=images_array[3:-6]
+train5=images_array[4:-5]
+train6=images_array[5:-4]
+train7=images_array[6:-3]
+train8=images_array[7:-2]
+train9=images_array[8:-1]
+
+output1=images_array[1:-8]
+output2=images_array[2:-7]
+output3=images_array[3:-6]
+output4=images_array[4:-5]
+output5=images_array[5:-4]
+output6=images_array[6:-3]
+output7=images_array[7:-2]
+output8=images_array[8:-1]
+output9=images_array[9:]
