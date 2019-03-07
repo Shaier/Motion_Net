@@ -119,7 +119,7 @@ images_array=[]
 #place the pixels for each image in the list
 for image in image_dir:
     images_array.append(mpimg.imread('video/'+str(image)))
-
+#imgplot = plt.imshow(img)
 train1=[]
 train2=[]
 train3=[]
