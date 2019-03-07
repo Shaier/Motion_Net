@@ -80,7 +80,7 @@ model.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,train9],
           y=[y1,y2,y3,y4,y5,y6,y7,y8,y9],
           batch_size=1, steps_per_epoch=100, epochs=10, verbose=0, validation_split=0.2, shuffle=False)
 #x=list of Numpy arrays of training data (x=[ [[f1],[f2]...[f9]], [[f2],[f3]...[f10]] ])
-#y=list of Numpy arrays of target (label) data 
+#y=list of Numpy arrays of target (label) data
 '''perhaps for the inputs I need to put x[0], x[1]...
 Almost done.
 Just need to be able to choose the numbers for the outputs
@@ -150,3 +150,20 @@ output6=images_array[6:-3]
 output7=images_array[7:-2]
 output8=images_array[8:-1]
 output9=images_array[9:]
+
+#flat the data
+def flat(list):
+    count=0
+    for arr in list:
+        newarr=arr.reshape(518400)
+        list[count]=newarr
+        count+=1
+flat(y1)
+flat(y2)
+flat(y3)
+flat(y4)
+flat(y5)
+flat(y6)
+flat(y7)
+flat(y8)
+flat(y9)
