@@ -118,6 +118,36 @@ output2=[frame3,frame4...frame_N-7]
 output9=[frame10,frame11...frame_N] #Note that we go up to N because the last frame is an output
 
 '''
+'''
+Extract features with VGG16'''
+vgg = VGG16(weights='imagenet', include_top=False)
+
+#img_path = 'video/img0001.jpg'
+'''
+img = image.load_img(img_path, target_size=(224, 224))
+x = image.img_to_array(img)
+x = np.expand_dims(x, axis=0)
+x = preprocess_input(x)
+features = vgg.predict(x)
+features.shape
+'''
+#folder with images
+image_dir=os.listdir('video')
+img_path = 'video/'
+
+#create a list to hold the array of pixels of each image
+images_array=[]
+
+#place the pixels for each image in the list
+for image_name in image_dir:
+    location=str(img_path +str(image_name))
+    img = image.load_img(location, target_size=(224, 224))
+    x = image.img_to_array(img)
+    x = np.expand_dims(x, axis=0)
+    x = preprocess_input(x)
+    features = vgg.predict(x)
+    images_array.append(features)
+
 
 #Load the data
 
@@ -196,24 +226,7 @@ the ROI will select the objects to use the CNN on
 Maybe train on the entire image, and then use ROI on test data
 
 ### A problem: using CNN on the input but trying to predict an output that is the actual image and not features
-Ill need to run the CNN on the entire dataset first, then put the arrays in the input/output 
+Ill need to run the CNN on the entire dataset first, then put the arrays in the input/output
 
 
 '''
-
-'''
-Extract features with VGG16'''
-from keras.applications.vgg16 import VGG16
-from keras.preprocessing import image
-from keras.applications.vgg16 import preprocess_input
-import numpy as np
-
-model3 = VGG16(weights='imagenet', include_top=False)
-
-img_path = 'video/img0001.jpg'
-img = image.load_img(img_path, target_size=(224, 224))
-x = image.img_to_array(img)
-x = np.expand_dims(x, axis=0)
-x = preprocess_input(x)
-
-features = model3.predict(x)
