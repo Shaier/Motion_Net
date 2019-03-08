@@ -76,11 +76,18 @@ plot_model(model, to_file='model.png')
 model.compile(optimizer='adam', loss='mean_absolute_error', metrics=['mean_squared_error'])
 
 #Fit
-model.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,train9],
+history = model.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,train9],
           y=[y1,y2,y3,y4,y5,y6,y7,y8,y9],
-          batch_size=1, epochs=100, verbose=1, validation_split=0.2, shuffle=False)
-#x=list of Numpy arrays of training data (x=[ [[f1],[f2]...[f9]], [[f2],[f3]...[f10]] ])
+          batch_size=1, epochs=100, verbose=1, validation_split=0.2, shuffle=False)#x=list of Numpy arrays of training data (x=[ [[f1],[f2]...[f9]], [[f2],[f3]...[f10]] ])
 #y=list of Numpy arrays of target (label) data
+
+#Virtualize Training
+
+fig, ax = plt.subplots(2,1)
+ax[0].plot(history.history['loss'], color='b', label="Training loss")
+ax[0].plot(history.history['val_loss'], color='r', label="validation loss",axes =ax[0])
+legend = ax[0].legend(loc='best', shadow=True)
+
 
 '''perhaps for the inputs I need to put x[0], x[1]...
 Almost done.
