@@ -214,6 +214,13 @@ flat(train8)
 flat(train9)
 
 
+
+#get the Loss
+hist = pd.DataFrame(history.history)
+#hist['epoch'] = history.epoch
+#hist.tail()
+hist[-1:]
+
 '''
 plan:
 get the features from the images using a pre trained model
