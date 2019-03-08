@@ -233,7 +233,7 @@ Maybe train on the entire image, and then use ROI on test data
 
 ### problems:
 1.using CNN on the input but trying to predict an output that is the actual image and not features
-Ill need to run the CNN on the entire dataset first, then put the arrays in the input/output
+I'll need to run the CNN on the entire dataset first, then put the arrays in the input/output
 
 2.Inserting 9 images, getting an output of 9 images
 
@@ -241,5 +241,5 @@ Ill need to run the CNN on the entire dataset first, then put the arrays in the 
 
 4.custom loss function for multiple regression / multi outputs
 
-5. get more images 
+5. get more images
 '''
