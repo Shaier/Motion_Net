@@ -78,7 +78,7 @@ model.compile(optimizer='adam', loss='mean_absolute_error ', metrics=['accuracy'
 #Fit
 model.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,train9],
           y=[y1,y2,y3,y4,y5,y6,y7,y8,y9],
-          batch_size=1, epochs=10, verbose=1, validation_split=0.2, shuffle=False)
+          batch_size=1, epochs=100, verbose=1, validation_split=0.2, shuffle=False)
 #x=list of Numpy arrays of training data (x=[ [[f1],[f2]...[f9]], [[f2],[f3]...[f10]] ])
 #y=list of Numpy arrays of target (label) data
 
@@ -227,5 +227,7 @@ Maybe train on the entire image, and then use ROI on test data
 ### A problem: using CNN on the input but trying to predict an output that is the actual image and not features
 Ill need to run the CNN on the entire dataset first, then put the arrays in the input/output
 
+Inserting 9 images, getting an output of 9 images
+compare output 1 to input 2, output 2 to input 3... up to output 8 to input 9. (we dont use output 9)
 
 '''
