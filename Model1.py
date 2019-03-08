@@ -224,10 +224,13 @@ the ROI will select the objects to use the CNN on
 
 Maybe train on the entire image, and then use ROI on test data
 
-### A problem: using CNN on the input but trying to predict an output that is the actual image and not features
+### problems:
+using CNN on the input but trying to predict an output that is the actual image and not features
 Ill need to run the CNN on the entire dataset first, then put the arrays in the input/output
 
 Inserting 9 images, getting an output of 9 images
+
 compare output 1 to input 2, output 2 to input 3... up to output 8 to input 9. (we dont use output 9)
 
+custom loss function for multiple regression / multi outputs
 '''
