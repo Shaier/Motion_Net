@@ -73,7 +73,7 @@ plot_model(model, to_file='model.png')
 
 
 #Compile the model
-model.compile(optimizer='adam', loss='mean_absolute_error ', metrics=['accuracy'])
+model.compile(optimizer='adam', loss='mean_absolute_error', metrics=['mean_squared_error'])
 
 #Fit
 model.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,train9],
