@@ -255,6 +255,6 @@ I'll need to run the CNN on the entire dataset first, then put the arrays in the
 I ended up downloading the dae/fbx files
 But the programs could not change them
 So I eventually used Bandicam to record videos
-
+good thing about mixamo... can change angles...
 
 '''
