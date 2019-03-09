@@ -1,14 +1,14 @@
 '''Converting videos to frames'''
 
-# Program To Read video
-# and Extract Frames
+# Program To Read video and Extract Frames
 import cv2
+import os
 
 # Function to extract frames
-def FrameCapture(path):
+def FrameCapture(video_path,video_name,images_path):
 
     # Path to video file
-    vidObj = cv2.VideoCapture(path)
+    vidObj = cv2.VideoCapture(video_path)
 
     # Used as counter variable
     count = 0
@@ -23,9 +23,19 @@ def FrameCapture(path):
         success, image = vidObj.read()
 
         # Saves the frames with frame-count
-        cv2.imwrite('salsa_dance_images/'+"frame%d.jpg" % count, image)
+        cv2.imwrite(images_path+video_name+"frame%d.jpg" % count, image)
 
         count += 1
 
+
+videos_path='salsa_dance_videos/'
+vid_dir=os.listdir(videos_path)
+images_path='salsa_dance_images/'
+
+for video in vid_dir:
+  video=video.split('.')
+  video_name=str(video[0])
+  FrameCapture(video_path+video_name,video_name,images_path)
+
 # Calling the function
-FrameCapture("salsa_dance_videos/bandicam 2019-03-09 08-51-20-717.mp4") 
+#FrameCapture("salsa_dance_videos/bandicam 2019-03-09 08-51-20-717.mp4") 
