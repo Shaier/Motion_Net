@@ -37,4 +37,4 @@ for video in vid_dir:
   FrameCapture(video_path,video_name,images_path)
 
 # Calling the function
-#FrameCapture("salsa_dance_videos/bandicam 2019-03-09 08-51-20-717.mp4") 
+#FrameCapture("salsa_dance_videos/bandicam 2019-03-09 08-51-20-717.mp4")   
