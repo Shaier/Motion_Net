@@ -251,5 +251,9 @@ I'll need to run the CNN on the entire dataset first, then put the arrays in the
 5. get more images
 '''
 
-#Used Mixamo to get the videos
-#I ended up downloading the dae/fbx files
+'''Used Mixamo to get the videos
+I ended up downloading the dae/fbx files
+But the programs could not change them
+So I 
+
+'''
