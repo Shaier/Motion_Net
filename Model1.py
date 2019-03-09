@@ -252,3 +252,4 @@ I'll need to run the CNN on the entire dataset first, then put the arrays in the
 '''
 
 #Used Mixamo to get the videos
+#I ended up downloading the dae/fbx files
