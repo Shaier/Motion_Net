@@ -250,3 +250,5 @@ I'll need to run the CNN on the entire dataset first, then put the arrays in the
 
 5. get more images
 '''
+
+#Used Mixamo to get the videos
