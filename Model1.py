@@ -254,6 +254,7 @@ I'll need to run the CNN on the entire dataset first, then put the arrays in the
 '''Used Mixamo to get the videos
 I ended up downloading the dae/fbx files
 But the programs could not change them
-So I 
+So I eventually used Bandicam to record videos
+
 
 '''
