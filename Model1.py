@@ -286,6 +286,8 @@ Trying to convert videos to frames now. then run the model
 
 #
 3/10- now when the model is running i need a way to compare testing images
-compare text image input 1 to 
+2.Inserting 9 images, getting an output of 9 images
+
+3.compare output 1 to input 2, output 2 to input 3... up to output 8 to input 9. (we dont use output 9)
 
 '''
