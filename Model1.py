@@ -318,9 +318,9 @@ So I still need the edges
 '''detect edges:'''
 !git clone https://github.com/JalaliLabUCLA/Image-feature-detection-using-Phase-Stretch-Transform
 !pip install Mahotas
+os.chdir("/content/gdrive/My Drive/Colab Notebooks/Image-feature-detection-using-Phase-Stretch-Transform/Python")
 import PST_function
 from PST_function import PST
-from importlib.machinery import SourceFileLoader
 from os.path import join
 # [] Need to install mahotas library for morphological operations
 import os
@@ -384,7 +384,7 @@ if Morph_flag ==0:
     # Save results
     default_directory, filename=filepath.split('./Test_Images/')
     filename, extension = filename.split('.')
-    output_path=default_directory+'./Test_Images/'+filename+'_edge.tif' # Saving the edge map with the extension tiff
+    output_path=default_directory+'./Test_Images/'+filename+'_edge.jpg' # Saving the edge map with the extension tiff
     mh.imsave(output_path, Edge)
 
 else:
@@ -403,10 +403,10 @@ else:
     # Save results
     default_directory, filename=filepath.split('./Test_Images/')
     filename, extension = filename.split('.')
-    output_path=default_directory+'./Test_Images/'+filename+'_edge.tif' # Saving the edge map with the extension tiff
+    output_path=default_directory+'./Test_Images/'+filename+'_edge.jpg' # Saving the edge map with the extension tiff
     mh.imsave(output_path, Edge.astype(np.uint8)*255)
-    output_path=default_directory+'./Test_Images/'+filename+'_overlay.tif' # Saving the overlay with the extension tiff
-    mh.imsave(output_path, Overlay)
+    #output_path=default_directory+'./Test_Images/'+filename+'_overlay.jpg' # Saving the overlay with the extension tiff
+    #mh.imsave(output_path, Overlay)
 
 
 
