@@ -348,6 +348,6 @@ contrast = cv2.imread("images/jp_gates_contrast.png")
 shopped = cv2.imread("images/jp_gates_photoshopped.png")
 
 # convert the images to grayscale
-original = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
+original = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY) 
 contrast = cv2.cvtColor(contrast, cv2.COLOR_BGR2GRAY)
 shopped = cv2.cvtColor(shopped, cv2.COLOR_BGR2GRAY)
