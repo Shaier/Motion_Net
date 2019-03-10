@@ -293,6 +293,9 @@ Trying to convert videos to frames now. then run the model
 -->MSE is dead simple to implement — but when using it for similarity, we can run into problems. The main one being that large distances
 between pixel intensities do not necessarily mean the contents of the images are dramatically different. I’ll provide some proof for that
 statement later in this post, but in the meantime, take my word for it.
+It’s important to note that a value of 0 for MSE indicates perfect similarity. A value greater than one implies less similarity and will continue to grow as the average difference between pixel intensities increases as well.
+
+
 
 
 '''
