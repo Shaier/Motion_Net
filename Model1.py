@@ -283,4 +283,7 @@ So I eventually used Bandicam to record videos
 good thing about mixamo... can change angles...
 Trying to convert videos to frames now. then run the model
 
+
+#
+Now
 '''
