@@ -286,5 +286,6 @@ Trying to convert videos to frames now. then run the model
 
 #
 3/10- now when the model is running i need a way to compare testing images
+compare text image input 1 to 
 
 '''
