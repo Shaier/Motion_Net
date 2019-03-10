@@ -308,7 +308,7 @@ from skimage.measure import structural_similarity as ssim
 
 use l2 and l1 regularization
 perhaps just get the edges (instead of the last layer of VGG) of a 96x96 say images
-
+then use ssim loss
 '''
 def mse(imageA, imageB):
 	# the 'Mean Squared Error' between the two images is the
