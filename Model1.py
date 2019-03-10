@@ -285,5 +285,6 @@ Trying to convert videos to frames now. then run the model
 
 
 #
-Now
+3/10- now when the model is running i need a way to compare testing images
+
 '''
