@@ -290,4 +290,9 @@ Trying to convert videos to frames now. then run the model
 
 3.compare output 1 to input 2, output 2 to input 3... up to output 8 to input 9. (we dont use output 9)
 
+-->MSE is dead simple to implement — but when using it for similarity, we can run into problems. The main one being that large distances
+between pixel intensities do not necessarily mean the contents of the images are dramatically different. I’ll provide some proof for that
+statement later in this post, but in the meantime, take my word for it.
+
+
 '''
