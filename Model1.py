@@ -79,7 +79,8 @@ model.compile(optimizer='adam', loss='mean_absolute_error', metrics=['mean_squar
 history = model.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,train9],
           y=[y1,y2,y3,y4,y5,y6,y7,y8,y9],
           batch_size=100, epochs=100, verbose=1, validation_split=0.2, shuffle=False)
-          #y=list of Numpy arrays of target (label) data
+
+#y=list of Numpy arrays of target (label) data
 
 #Virtualize Training
 
