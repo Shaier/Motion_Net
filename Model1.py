@@ -295,7 +295,9 @@ between pixel intensities do not necessarily mean the contents of the images are
 statement later in this post, but in the meantime, take my word for it.
 It’s important to note that a value of 0 for MSE indicates perfect similarity. A value greater than one implies less similarity and will continue to grow as the average difference between pixel intensities increases as well.
 
+In order to remedy some of the issues associated with MSE for image comparison, we have the Structural Similarity Index, developed by Wang et al.:
 
+SSIM attempts to model the perceived change in the structural information of the image, whereas MSE is actually estimating the perceived errors. There is a subtle difference between the two, but the results are dramatic.
 
 
 '''
