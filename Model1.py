@@ -155,6 +155,17 @@ for image_name in image_dir:
   except:
     pass
 
+
+#Save the list to a file
+
+import pickle
+
+#with open('images_array', 'wb') as fp:
+#    pickle.dump(images_array, fp)
+
+with open ('images_array', 'rb') as fp:
+    images_array = pickle.load(fp)
+
 #Load the data
 
 #folder with images
