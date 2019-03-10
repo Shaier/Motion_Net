@@ -130,15 +130,18 @@ x = preprocess_input(x)
 features = vgg.predict(x)
 features.shape
 '''
+vgg = VGG16(weights='imagenet', include_top=False)
+
 #folder with images
-image_dir=os.listdir('video')
-img_path = 'video/'
+image_dir=os.listdir('salsa_dance_images')
+img_path = 'salsa_dance_images/'
 
 #create a list to hold the array of pixels of each image
 images_array=[]
-
+count=0
 #place the pixels for each image in the list
 for image_name in image_dir:
+  try:
     location=str(img_path +str(image_name))
     img = image.load_img(location, target_size=(224, 224))
     x = image.img_to_array(img)
@@ -146,7 +149,11 @@ for image_name in image_dir:
     x = preprocess_input(x)
     features = vgg.predict(x)
     images_array.append(features)
-
+    if count%1000==0:
+      print(count)
+    count+=1
+  except:
+    pass
 
 #Load the data
 
