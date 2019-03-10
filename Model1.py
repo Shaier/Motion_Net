@@ -78,8 +78,8 @@ model.compile(optimizer='adam', loss='mean_absolute_error', metrics=['mean_squar
 #Fit
 history = model.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,train9],
           y=[y1,y2,y3,y4,y5,y6,y7,y8,y9],
-          batch_size=1, epochs=100, verbose=1, validation_split=0.2, shuffle=False)#x=list of Numpy arrays of training data (x=[ [[f1],[f2]...[f9]], [[f2],[f3]...[f10]] ])
-#y=list of Numpy arrays of target (label) data
+          batch_size=100, epochs=100, verbose=1, validation_split=0.2, shuffle=False)
+          #y=list of Numpy arrays of target (label) data
 
 #Virtualize Training
 
@@ -175,6 +175,12 @@ images_array=[]
 #place the pixels for each image in the list
 for image in image_dir:
     images_array.append(mpimg.imread('video/'+str(image)))
+
+
+len(images_array)
+
+
+
 #imgplot = plt.imshow(img)
 train1=[]
 train2=[]
