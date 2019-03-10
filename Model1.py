@@ -307,6 +307,8 @@ Unlike MSE, the SSIM value can vary between -1 and 1, where 1 indicates perfect 
 from skimage.measure import structural_similarity as ssim
 
 use l2 and l1 regularization
+perhaps just get the edges (instead of the last layer of VGG) of a 96x96 say images
+
 '''
 def mse(imageA, imageB):
 	# the 'Mean Squared Error' between the two images is the
