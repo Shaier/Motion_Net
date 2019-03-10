@@ -372,3 +372,30 @@ plt.show()
 compare_images(original, original, "Original vs. Original")
 compare_images(original, contrast, "Original vs. Contrast")
 compare_images(original, shopped, "Original vs. Photoshopped")
+
+
+#SSIM LOSS FUNCTION:
+
+def ssim_metric(y_true, y_pred):
+    # source: https://gist.github.com/Dref360/a48feaecfdb9e0609c6a02590fd1f91b
+
+    y_true = tf.expand_dims(y_true, -1)
+    y_pred = tf.expand_dims(y_pred, -1)
+    y_true = tf.transpose(y_true, [0, 2, 3, 1])
+    y_pred = tf.transpose(y_pred, [0, 2, 3, 1])
+    patches_true = tf.extract_image_patches(y_true, [1, 5, 5, 1], [1, 2, 2, 1], [1, 1, 1, 1], "SAME")
+    patches_pred = tf.extract_image_patches(y_pred, [1, 5, 5, 1], [1, 2, 2, 1], [1, 1, 1, 1], "SAME")
+
+    u_true = K.mean(patches_true, axis=3)
+    u_pred = K.mean(patches_pred, axis=3)
+    var_true = K.var(patches_true, axis=3)
+    var_pred = K.var(patches_pred, axis=3)
+    std_true = K.sqrt(var_true)
+    std_pred = K.sqrt(var_pred)
+    c1 = 0.01 ** 2
+    c2 = 0.03 ** 2
+    ssim = (2 * u_true * u_pred + c1) * (2 * std_pred * std_true + c2)
+    denom = (u_true ** 2 + u_pred ** 2 + c1) * (var_pred + var_true + c2)
+    ssim /= denom
+    ssim = tf.where(tf.is_nan(ssim), K.zeros_like(ssim), ssim)
+    return ssim)
