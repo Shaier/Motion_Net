@@ -375,6 +375,8 @@ compare_images(original, shopped, "Original vs. Photoshopped")
 
 
 #SSIM LOSS FUNCTION:
+import keras.backend as K
+import tensorflow as tf
 
 def ssim_metric(y_true, y_pred):
     # source: https://gist.github.com/Dref360/a48feaecfdb9e0609c6a02590fd1f91b
