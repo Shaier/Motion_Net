@@ -312,7 +312,7 @@ then use ssim loss
 perhaps use 96x96, get edges, run model1, train it. then compare 9 images using MSSIM loss function
 if SSIM doesnt work:
 I still need to compare the first image to the next
-
+So I still need the edges 
 '''
 def mse(imageA, imageB):
 	# the 'Mean Squared Error' between the two images is the
