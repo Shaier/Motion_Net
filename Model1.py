@@ -271,11 +271,11 @@ also need to convert to 96x96?
 for tomorrow:
 check loss before and after each one
 normalize the data--
+Change batch size---
 
 Is the network size is too small / large?
 Try initialise weights with different initialization scheme.
 Try different activation functions, loss function, optimizer.
-Change batch size.
 Add dropout layer.
 batch norm
 check if validation_split doesnt shuffle - nope. it takes 10% of the last data (if its set to 0.1?)
@@ -283,6 +283,7 @@ regularization
 grid search for hyperparameters - SGD?
 give it time?
 decrease learning rate
+perhaps run VGG on edges 
 
 from keras import regularizers
 model.add(Dense(64, input_dim=64,
