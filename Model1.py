@@ -266,7 +266,15 @@ if SSIM doesnt work:
 I still need to compare the first image to the next
 So I still need the edges
 also need to convert to 96x96?
+
+
+for tomorrow:
+normalize the data?
+
 '''
+
+
+
 
 #Loss function
 def mse(imageA, imageB):
