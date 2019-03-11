@@ -89,8 +89,8 @@ else:
     filename, extension = filename.split('.')
     output_path=default_directory+'./Test_Images/'+filename+'_edge.jpg' # Saving the edge map with the extension tiff
     mh.imsave(output_path, Edge.astype(np.uint8)*255)
-    #output_path=default_directory+'./Test_Images/'+filename+'_overlay.jpg' # Saving the overlay with the extension tiff
-    #mh.imsave(output_path, Overlay)
+    output_path=default_directory+'./Test_Images/'+filename+'_overlay.jpg' # Saving the overlay with the extension tiff
+    mh.imsave(output_path, Overlay)
 
 
 
@@ -150,4 +150,3 @@ for image_name in image_dir:
     count+=1
   except:
     pass
-  
