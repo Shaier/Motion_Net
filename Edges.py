@@ -1,6 +1,7 @@
 '''detect edges:'''
 !git clone https://github.com/JalaliLabUCLA/Image-feature-detection-using-Phase-Stretch-Transform
 !pip install Mahotas
+
 os.chdir("/content/gdrive/My Drive/Colab Notebooks/Image-feature-detection-using-Phase-Stretch-Transform/Python")
 import PST_function
 from PST_function import PST
