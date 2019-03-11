@@ -366,5 +366,9 @@ compare_images(original, original, "Original vs. Original")
 compare_images(original, contrast, "Original vs. Contrast")
 compare_images(original, shopped, "Original vs. Photoshopped")
 
+!git clone https://github.com/keras-team/keras-contrib
+!git clone https://github.com/keras-team/keras-contrib/tree/master/keras_contrib
+
+
 
 #SSIM LOSS FUNCTION:
