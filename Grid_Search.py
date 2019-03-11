@@ -1,5 +1,8 @@
 #Hyperparameter search
 
+
+from keras.wrappers.scikit_learn import KerasRegressor
+
 parameters = {'activation':['relu', 'elu'],
      'optimizer' : ['SGD', 'RMSprop', 'Adagrad', 'Adadelta', 'Adam', 'Adamax', 'Nadam'],
      'losses': ['mse','rmse'],
