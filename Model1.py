@@ -282,6 +282,15 @@ grid search for hyperparameters - SGD?
 give it time?
 decrease learning rate
 
+from keras import regularizers
+model.add(Dense(64, input_dim=64,
+                kernel_regularizer=regularizers.l2(0.01),
+                activity_regularizer=regularizers.l1(0.01)))
+
+keras.regularizers.l1(0.)
+keras.regularizers.l2(0.)
+keras.regularizers.l1_l2(l1=0.01, l2=0.01)
+
 '''
 
 
