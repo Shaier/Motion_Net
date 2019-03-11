@@ -101,3 +101,6 @@ model = KerasRegressor(build_fn=create_model)
 grid = GridSearchCV(estimator=model, param_grid=p, n_jobs=1)
 grid_result = grid.fit(X=[train1,train2,train3,train4,train5,train6,train7,train8,train9],
           y=[y1,y2,y3,y4,y5,y6,y7,y8,y9])
+
+# summarize results
+print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
