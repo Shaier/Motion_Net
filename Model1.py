@@ -276,7 +276,9 @@ Try different activation functions, loss function, optimizer.
 Change batch size.
 Add dropout layer.
 batch norm
-check if validation_split doesnt shuffle
+check if validation_split doesnt shuffle!!!!
+regularization
+grid search for hyperparameters
 
 '''
 
