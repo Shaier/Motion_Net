@@ -278,7 +278,7 @@ Add dropout layer.
 batch norm
 check if validation_split doesnt shuffle!!!!
 regularization
-grid search for hyperparameters
+grid search for hyperparameters - SGD?
 give it time?
 decrease learning rate
 
