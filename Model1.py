@@ -279,6 +279,8 @@ batch norm
 check if validation_split doesnt shuffle!!!!
 regularization
 grid search for hyperparameters
+give it time?
+decrease learning rate
 
 '''
 
