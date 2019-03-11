@@ -269,7 +269,8 @@ also need to convert to 96x96?
 
 
 for tomorrow:
-normalize the data?
+normalize the data--
+
 Is the network size is too small / large?
 Try initialise weights with different initialization scheme.
 Try different activation functions, loss function, optimizer.
