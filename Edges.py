@@ -102,39 +102,52 @@ import mahotas as mh
 import matplotlib.pylab as plt
 from itertools import zip_longest
 
-# Import the original image
-input_path = os.getcwd() # This is where the code is running.
-filepath = os.path.join(input_path,'../Test_Images/salsa2.jpg')  # The images are located in a folder called 'Test_Images' within the root directory from where the code runs.
+os.chdir("/content/gdrive/My Drive/Colab Notebooks")
+#folder with images
+image_dir=os.listdir('new')
+img_path = 'new/'
 
-Image_orig = mh.imread(filepath) # Read the image.
-# To convert the color image to grayscale
-if Image_orig.ndim ==3:
-    Image_orig_grey = mh.colors.rgb2grey(Image_orig)  # Image_orig is color image.
-    #image.load_img(location, target_size=(224, 224))
-else:
-    Image_orig_grey = Image_orig
+#create a list to hold the array of pixels of each image
+images_array=[]
+count=0
+#place the pixels for each image in the list
+for image_name in image_dir:
+  try:
+    location=str(img_path +str(image_name))
+    Image_orig = mh.imread(location) # Read the image.
+    # To convert the color image to grayscale
+    if Image_orig.ndim ==3:
+        Image_orig_grey = mh.colors.rgb2grey(Image_orig)  # Image_orig is color image.
+        #image.load_img(location, target_size=(224, 224))
+    else:
+        Image_orig_grey = Image_orig
 
-# Define various
-# low-pass filtering (also called localization kernel) parameter
-LPF = 0.21 # Gaussian Low Pass Filter
-# PST parameters
-Phase_strength = 0.48
-Warp_strength= 12.14
-# Thresholding parameters (for post processing after the edge is computed)
-Threshold_min = -1
-Threshold_max = 0.0019
-# [] Choose to compute the analog or digital edge,
-Morph_flag =1 # [] To compute analog edge, set Morph_flag=0 and to compute digital edge, set Morph_flag=1
+    # Define various
+    # low-pass filtering (also called localization kernel) parameter
+    LPF = 0.21 # Gaussian Low Pass Filter
+    # PST parameters
+    Phase_strength = 0.48
+    Warp_strength= 12.14
+    # Thresholding parameters (for post processing after the edge is computed)
+    Threshold_min = -1
+    Threshold_max = 0.0019
+    # [] Choose to compute the analog or digital edge,
+    Morph_flag =1 # [] To compute analog edge, set Morph_flag=0 and to compute digital edge, set Morph_flag=1
 
 
-[Edge, PST_Kernel]= PST(Image_orig_grey, LPF, Phase_strength, Warp_strength, Threshold_min, Threshold_max, Morph_flag)
+    [Edge, PST_Kernel]= PST(Image_orig_grey, LPF, Phase_strength, Warp_strength, Threshold_min, Threshold_max, Morph_flag)
 
-if Morph_flag ==0:
-    Edge = (Edge/np.max(Edge))*3
-else:
-    Overlay=mh.overlay(Image_orig_grey,Edge)
-    image=Edge.astype(np.uint8)*255
-    new_image=mh.imresize(image, (224,224)) #change to 224x224
-
-plt.imshow(new_image)
-new_image.shape
+    if Morph_flag ==0:
+        Edge = (Edge/np.max(Edge))*3
+    else:
+        Overlay=mh.overlay(Image_orig_grey,Edge)
+        image=Edge.astype(np.uint8)*255
+        new_image=mh.imresize(image, (224,224)) #change dimensions to 224x224
+  # convert from Numpy to a list of values
+    images_array.append(new_image)
+    if count%100==0:
+      print(count)
+    count+=1
+  except:
+    pass
+  
