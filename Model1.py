@@ -281,7 +281,7 @@ batch norm
 check if validation_split doesnt shuffle - nope. it takes 10% of the last data (if its set to 0.1?)
 regularization
 grid search for hyperparameters - SGD?
-give it time?
+give it time
 decrease learning rate
 perhaps run VGG on edges
 
