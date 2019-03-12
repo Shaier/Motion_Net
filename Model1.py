@@ -283,7 +283,7 @@ regularization
 grid search for hyperparameters - SGD?
 give it time?
 decrease learning rate
-perhaps run VGG on edges 
+perhaps run VGG on edges
 
 from keras import regularizers
 model.add(Dense(64, input_dim=64,
