@@ -273,13 +273,13 @@ check loss before and after each one
 normalize the data
 Change batch size
 grid search for hyperparameters =Tried gridcv- cant use functional api. Now trying talos (once I can do grid search I can use search for H.P)
+Add dropout layer.
+batch norm- right after FC/CNN but before activation like relu
 
 
 Is the network size is too small / large?
 Try initialise weights with different initialization scheme.
 Try different activation functions, loss function, optimizer.
-Add dropout layer.
-batch norm- right after FC/CNN but before activation like relu
 check if validation_split doesnt shuffle - nope. it takes 10% of the last data (if its set to 0.1?)
 regularization
 
