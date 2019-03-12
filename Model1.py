@@ -270,7 +270,7 @@ also need to convert to 96x96?
 
 for tomorrow:
 check loss before and after each one
-normalize the data--
+normalize the data
 Change batch size---
 
 Is the network size is too small / large?
