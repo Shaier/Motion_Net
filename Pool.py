@@ -891,3 +891,9 @@ hidden = Dense(2)(visible)
 #   from your created layers. It requires that you only specify the
 #   input and output layers. For example:
 model = Model(inputs=visible, outputs=hidden)
+
+
+'''
+add the market analysis:
+
+'''
