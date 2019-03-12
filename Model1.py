@@ -272,7 +272,7 @@ for tomorrow:
 check loss before and after each one
 normalize the data
 Change batch size
-grid search for hyperparameters =Talo?
+grid search for hyperparameters =Tried gridcv- cant use functional api,
 
 Is the network size is too small / large?
 Try initialise weights with different initialization scheme.
