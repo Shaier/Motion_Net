@@ -286,7 +286,7 @@ change the image from /255
 Try initialise weights with different initialization scheme.
 Try different activation functions, loss function, optimizer.
 regularization
-perhaps run VGG on edges and then run reg. 
+perhaps run VGG on edges and then run reg.
 
 from keras import regularizers
 model.add(Dense(64, input_dim=64,
@@ -300,6 +300,8 @@ keras.regularizers.l1_l2(l1=0.01, l2=0.01)
 
 DONT FORGET THAT THE POINT IS TO PREDICT AT THE END
 ADJUST AS MUCH AS YOU CAN THEN PREDICT
+Make prediction with one input?
+
 '''
 
 
