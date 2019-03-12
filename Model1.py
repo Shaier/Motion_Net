@@ -279,7 +279,7 @@ Is the network size is too small / large?
 Try initialise weights with different initialization scheme.
 Try different activation functions, loss function, optimizer.
 Add dropout layer.
-batch norm
+batch norm- right after FC/CNN but before activation like relu 
 check if validation_split doesnt shuffle - nope. it takes 10% of the last data (if its set to 0.1?)
 regularization
 
