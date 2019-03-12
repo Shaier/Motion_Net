@@ -293,7 +293,6 @@ model.add(Dense(64, input_dim=64,
 keras.regularizers.l1(0.)
 keras.regularizers.l2(0.)
 keras.regularizers.l1_l2(l1=0.01, l2=0.01)
-
 '''
 
 
