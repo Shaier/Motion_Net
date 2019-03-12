@@ -895,5 +895,6 @@ model = Model(inputs=visible, outputs=hidden)
 
 '''
 add the market analysis:
-add the why you did you you did 
+add the why you did you you did
+
 '''
