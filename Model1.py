@@ -275,6 +275,7 @@ Change batch size
 grid search for hyperparameters =Tried gridcv- cant use functional api. Now trying talos (once I can do grid search I can use search for H.P)
 Add dropout layer.
 batch norm- right after FC/CNN but before activation like relu
+give it time
 
 
 Is the network size is too small / large?
@@ -283,7 +284,6 @@ Try different activation functions, loss function, optimizer.
 check if validation_split doesnt shuffle - nope. it takes 10% of the last data (if its set to 0.1?)
 regularization
 
-give it time
 decrease learning rate
 perhaps run VGG on edges
 
