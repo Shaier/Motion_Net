@@ -272,6 +272,7 @@ for tomorrow:
 check loss before and after each one
 normalize the data
 Change batch size
+grid search for hyperparameters =Talo?
 
 Is the network size is too small / large?
 Try initialise weights with different initialization scheme.
@@ -280,7 +281,7 @@ Add dropout layer.
 batch norm
 check if validation_split doesnt shuffle - nope. it takes 10% of the last data (if its set to 0.1?)
 regularization
-grid search for hyperparameters =Talo?
+
 give it time
 decrease learning rate
 perhaps run VGG on edges
