@@ -279,9 +279,10 @@ give it time
 check if validation_split doesnt shuffle - nope. it takes 10% of the last data (if its set to 0.1?)
 Is the network size is too small / large?
 decrease learning rate
-
 increase training size
-change the image from /255 
+change the image from /255
+
+
 Try initialise weights with different initialization scheme.
 Try different activation functions, loss function, optimizer.
 regularization
