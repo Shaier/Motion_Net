@@ -300,6 +300,8 @@ decrease learning rate
 increase training size
 change the image from /255
 
+save weights of the model so you can load them and continue
+
 Try initialise weights with different initialization scheme.
 Try different activation functions, loss function, optimizer.
 regularization
