@@ -653,3 +653,14 @@ a1
 #output is:
 #array([[
 #to plot it we need to reshape:
+a1=np.reshape(a1,(96,96))
+a2=np.reshape(a2,(96,96))
+a3=np.reshape(a4,(96,96))
+a4=np.reshape(a4,(96,96))
+a5=np.reshape(a5,(96,96))
+a6=np.reshape(a6,(96,96))
+a7=np.reshape(a7,(96,96))
+a8=np.reshape(a8,(96,96))
+a9=np.reshape(a9,(96,96))
+
+plt.imshow(a9,aspect='auto')
