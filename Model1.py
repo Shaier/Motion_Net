@@ -620,3 +620,10 @@ the losses it creates during the forward pass are added to the model.losses attr
 
 logits = model(x_train[:64])
 print(model.losses)
+
+The tracked losses are first cleared at the start of the model __call__, so you will only see the losses created during this one forward pass. For instance, calling the model repeatedly and then querying losses only displays the latest losses, created during the last call:
+
+logits = model(x_train[:64])
+logits = model(x_train[64: 128])
+logits = model(x_train[128: 192])
+print(model.losses)
