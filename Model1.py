@@ -79,7 +79,7 @@ model.compile(optimizer='adam', loss='mean_absolute_error', metrics=['mean_squar
 history = model.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,train9],
           y=[y1,y2,y3,y4,y5,y6,y7,y8,y9], callbacks=callbacks,
           batch_size=100, epochs=10, verbose=1, validation_split=0.1, shuffle=False)
-          
+
 #y=list of Numpy arrays of target (label) data
 
 #Virtualize Training
@@ -282,6 +282,7 @@ decrease learning rate
 increase training size
 change the image from /255
 
+Keep trying
 
 Try initialise weights with different initialization scheme.
 Try different activation functions, loss function, optimizer.
