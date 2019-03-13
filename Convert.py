@@ -3,6 +3,9 @@
 import cv2
 import os
 
+os.chdir('groot')
+os.getcwd()
+FrameCapture('C:\\Users\\sagi\\Desktop\\groot\\groot.mp4','groot','C:\\Users\\sagi\\Desktop\\groot')
 # Function to extract frames
 def FrameCapture(video_path,video_name,images_path):
 
@@ -21,7 +24,7 @@ def FrameCapture(video_path,video_name,images_path):
         success, image = vidObj.read()
 
         # Saves the frames with frame-count
-        cv2.imwrite('video/'+video_name+"frame%d.jpg" % count, image)
+        cv2.imwrite(video_name+"frame%d.jpg" % count, image)
         count += 1
 
 
