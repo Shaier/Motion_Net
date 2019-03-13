@@ -612,3 +612,11 @@ print(model.summary())
 
 
 #########################
+When you call a model, like this:
+
+logits = model(x_train)
+
+the losses it creates during the forward pass are added to the model.losses attribute:
+
+logits = model(x_train[:64])
+print(model.losses)
