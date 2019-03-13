@@ -607,11 +607,6 @@ model.compile(optimizer=opt, loss='mse', metrics=['mse'])
 # summarize layers
 print(model.summary())
 
-
-
-
-
-
 #########################
 When you call a model, like this:
 
