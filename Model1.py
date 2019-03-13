@@ -75,6 +75,24 @@ plot_model(model, to_file='model.png')
 #Compile the model
 model.compile(optimizer='adam', loss='mean_absolute_error', metrics=['mean_squared_error'])
 
+from keras.callbacks import ReduceLROnPlateau
+
+#Early Stop
+earlystop = EarlyStopping(patience=2)         # Stop training when `val_loss` is no longer improving
+        # "no longer improving" being further defined as "for at least 2 epochs"
+
+
+#Learning Rate Reduction
+#We will reduce the learning rate when then accuracy not increase for 2 steps
+learning_rate_reduction = ReduceLROnPlateau(monitor='loss',
+                                            patience=10,
+                                            verbose=1,
+                                            min_delta=1e-2,         # "no longer improving" being defined as "no better than 1e-2 less"
+                                            factor=0.5,
+                                            min_lr=0.00001)
+
+callbacks = [earlystop, learning_rate_reduction]
+
 #Fit
 history = model.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,train9],
           y=[y1,y2,y3,y4,y5,y6,y7,y8,y9], callbacks=callbacks,
@@ -587,3 +605,10 @@ model.compile(optimizer=opt, loss='mse', metrics=['mse'])
 
 # summarize layers
 print(model.summary())
+
+
+
+
+
+
+#########################
