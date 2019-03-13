@@ -664,4 +664,11 @@ a7=np.reshape(a7,(96,96))
 a8=np.reshape(a8,(96,96))
 a9=np.reshape(a9,(96,96))
 
-plt.imshow(a9,aspect='auto')
+
+#Plotting
+output_image=np.array([a1,a2,a3,a4,a5,a6,a7,a8,a9])
+fig = plt.figure(figsize=(20, 10))  # width, height in inches
+
+for i in range(9):
+    sub = fig.add_subplot(3, 3, i + 1)
+    sub.imshow(output_image[i,:,:], interpolation='nearest')
