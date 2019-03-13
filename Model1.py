@@ -580,7 +580,8 @@ model = Model(inputs=[frame1, frame2, frame3,frame4, frame5, frame6,frame7, fram
               outputs=[output1, output2, output3,output4, output5, output6, output7,output8, output9])
 
 #Compile the model
-model.compile(optimizer='adam', loss='mse', metrics=['mse'])
+opt = Adam(lr=1e-3, decay=1e-3 / 200)
+model.compile(optimizer=opt, loss='mse', metrics=['mse'])
 
 # summarize layers
 print(model.summary())
