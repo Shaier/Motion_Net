@@ -652,3 +652,4 @@ test_list[0]=np.expand_dims(test_list[0],axis=0)
 a1
 #output is:
 #array([[
+#to plot it we need to reshape:
