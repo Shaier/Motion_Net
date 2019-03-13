@@ -2,9 +2,7 @@
 # Program To Read video and Extract Frames
 import cv2
 import os
-os.getcwd()
-os.chdir('C:/Users/sagi/Desktop')
-os.listdir('groot')
+
 # Function to extract frames
 def FrameCapture(video_path,video_name,images_path):
 
@@ -27,9 +25,9 @@ def FrameCapture(video_path,video_name,images_path):
         count += 1
 
 
-videos_path='groot'
+videos_path='salsa_dance_videos/'
 vid_dir=os.listdir(videos_path)
-images_path='groot/'
+images_path='salsa_dance_images/'
 
 for video in vid_dir:
   video=video.split('.')
@@ -39,4 +37,4 @@ for video in vid_dir:
   FrameCapture(video_path,video_name,images_path)
 
 # Calling the function
-#FrameCapture(video_path, video_name, images_path)
+#FrameCapture("salsa_dance_videos/bandicam 2019-03-09 08-51-20-717.mp4")
