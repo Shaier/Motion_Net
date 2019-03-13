@@ -645,3 +645,6 @@ test_list[6]=np.expand_dims(test_list[6],axis=0)
 test_list[7]=np.expand_dims(test_list[7],axis=0)
 test_list[8]=np.expand_dims(test_list[8],axis=0)
 test_list[0]=np.expand_dims(test_list[0],axis=0)
+
+(a1,a2,a3,a4,a5,a6,a7,a8,a9)=model.predict([ test_list[0],test_list[1],test_list[2],test_list[3],test_list[4],test_list[5],test_list[6],test_list[7],test_list[8] ])
+#
