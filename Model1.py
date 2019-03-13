@@ -636,7 +636,7 @@ flat(test_list) #convert it to (9216,)
 test_list[1]
 #output is:
 #array([....]) --> notice that there's only one brackets inside the array. WE NEED 2: array( [ [] ] )
-#convert them to (1, 9216)
+#convert them to (1, 9216) from (9216,)
 test_list[1]=np.expand_dims(test_list[1],axis=0)
 test_list[2]=np.expand_dims(test_list[2],axis=0)
 test_list[3]=np.expand_dims(test_list[3],axis=0)
