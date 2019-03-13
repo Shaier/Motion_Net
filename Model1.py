@@ -283,6 +283,7 @@ increase training size
 change the image from /255
 
 Keep trying to predict@######################################################<<<<<<<<<<<<<
+should be first priority
 
 Try initialise weights with different initialization scheme.
 Try different activation functions, loss function, optimizer.
