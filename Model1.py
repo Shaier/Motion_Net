@@ -627,3 +627,6 @@ logits = model(x_train[:64])
 logits = model(x_train[64: 128])
 logits = model(x_train[128: 192])
 print(model.losses)
+
+
+##############################
