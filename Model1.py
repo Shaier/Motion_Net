@@ -633,4 +633,6 @@ print(model.losses)
 '''PREDICT'''
 test_list=images_array[1001:1010]
 flat(test_list)
-test_list[1].shape
+test_list[1]
+#output is:
+#array([....]) --> notice that there's only one brackets inside the array. WE NEED 2: array( [ [] ] )
