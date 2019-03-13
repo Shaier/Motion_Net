@@ -636,3 +636,12 @@ flat(test_list)
 test_list[1]
 #output is:
 #array([....]) --> notice that there's only one brackets inside the array. WE NEED 2: array( [ [] ] )
+test_list[1]=np.expand_dims(test_list[1],axis=0)
+test_list[2]=np.expand_dims(test_list[2],axis=0)
+test_list[3]=np.expand_dims(test_list[3],axis=0)
+test_list[4]=np.expand_dims(test_list[4],axis=0)
+test_list[5]=np.expand_dims(test_list[5],axis=0)
+test_list[6]=np.expand_dims(test_list[6],axis=0)
+test_list[7]=np.expand_dims(test_list[7],axis=0)
+test_list[8]=np.expand_dims(test_list[8],axis=0)
+test_list[0]=np.expand_dims(test_list[0],axis=0)
