@@ -324,7 +324,7 @@ Make prediction with one input?
 
 I CAN PREDICT!!!!!!!!!!!!!!!!!!!!!
 Problem:
-Images are terrible so the model might not work with them ()
+Images are terrible so the model might not work with them (not saying the model is bad- it might be)
 '''
 
 
