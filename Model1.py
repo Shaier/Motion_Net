@@ -631,3 +631,4 @@ print(model.losses)
 
 ##############################
 '''PREDICT'''
+test_list=images_array[1001:1010] 
