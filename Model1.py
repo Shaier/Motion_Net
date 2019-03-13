@@ -323,6 +323,8 @@ ADJUST AS MUCH AS YOU CAN THEN PREDICT
 Make prediction with one input?
 
 I CAN PREDICT!!!!!!!!!!!!!!!!!!!!!
+Problem:
+Images are terrible so the model might not work with them ()
 '''
 
 
