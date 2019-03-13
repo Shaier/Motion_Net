@@ -25,9 +25,9 @@ def FrameCapture(video_path,video_name,images_path):
         count += 1
 
 
-videos_path='salsa_dance_videos/'
+videos_path='C:/Users/sagi/Desktop/groot/'
 vid_dir=os.listdir(videos_path)
-images_path='salsa_dance_images/'
+images_path='C:/Users/sagi/Desktop/groot/'
 
 for video in vid_dir:
   video=video.split('.')
@@ -37,4 +37,4 @@ for video in vid_dir:
   FrameCapture(video_path,video_name,images_path)
 
 # Calling the function
-#FrameCapture("salsa_dance_videos/bandicam 2019-03-09 08-51-20-717.mp4")   
+#FrameCapture("salsa_dance_videos/bandicam 2019-03-09 08-51-20-717.mp4")
