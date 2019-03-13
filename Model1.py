@@ -282,7 +282,7 @@ decrease learning rate
 increase training size
 change the image from /255
 
-Keep trying to predict
+Keep trying to predict@######################################################<<<<<<<<<<<<<
 
 Try initialise weights with different initialization scheme.
 Try different activation functions, loss function, optimizer.
