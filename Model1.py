@@ -101,6 +101,9 @@ history = model.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,t
 #y=list of Numpy arrays of target (label) data
 
 #Save weights only (I tried saving the entire model but it didn't seem to work)
+# Save the weights
+model.save_weights('model_weights.h5')
+
 
 #Virtualize Training
 
