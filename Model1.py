@@ -110,7 +110,6 @@ model.save_weights('model_weights.h5')
 model.load_weights('model_weights.h5')
 
 #Virtualize Training
-
 fig, ax = plt.subplots(2,1)
 ax[0].plot(history.history['loss'], color='b', label="Training loss")
 ax[0].plot(history.history['val_loss'], color='r', label="validation loss",axes =ax[0])
