@@ -105,6 +105,7 @@ history = model.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,t
 model.save_weights('model_weights.h5')
 
 #Then in order to load the weights:
+#Run everything until the fit (compile and everything) and run the following:
 
 
 #Virtualize Training
