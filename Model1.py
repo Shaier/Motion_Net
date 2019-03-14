@@ -100,6 +100,8 @@ history = model.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,t
 
 #y=list of Numpy arrays of target (label) data
 
+#
+
 #Virtualize Training
 
 fig, ax = plt.subplots(2,1)
