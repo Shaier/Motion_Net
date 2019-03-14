@@ -106,7 +106,8 @@ model.save_weights('model_weights.h5')
 
 #Then in order to load the weights:
 #Run everything until the fit (compile and everything) and run the following:
-
+#load weights
+model.load_weights('model_weights.h5')
 
 #Virtualize Training
 
