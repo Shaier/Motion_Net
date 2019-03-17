@@ -1,6 +1,6 @@
 # Pool
 
-## In this project I will use image segmentation on a new dataset
+## In this project I will use a new type of architecture 
   
   
 I'm currently working on Mask RCNN for this project, as well as creating my own net
