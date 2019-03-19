@@ -1,79 +1,245 @@
-# Multiple Inputs
-'''
-Names:
-4D CNN
-Motion CNN
-movement CNN
-
-'''
-
+'''Motion Net'''
 '''Idea here: Get the weights, run the new frames on the weights, if the loss<threshhold == class 1
 THIS MODEL IS MEANT TO ONLY WORK ON ONE MOVEMENT
 '''
+#Libraries
+from keras.utils import plot_model
+from keras.models import Model
+from keras.layers import Input
+from keras.layers import Dense
+from keras.layers import Flatten
+from keras.layers.convolutional import Conv2D
+from keras.layers.pooling import MaxPooling2D
+from keras.layers.merge import concatenate
+import os
+import matplotlib.image as mpimg
+import matplotlib.pyplot as plt
+from keras.applications.vgg16 import VGG16
+from keras.preprocessing import image
+from keras.applications.vgg16 import preprocess_input
+import numpy as np
+import pandas as pd
+from keras.layers import Dropout, Activation
+from keras.layers.normalization import BatchNormalization
+from keras.callbacks import EarlyStopping, Callback
+from keras.optimizers import Adam
+import keras
+import json
+from keras.models import load_model
+from keras.models import model_from_json
+%matplotlib inline
+
+os.chdir("/content/gdrive/My Drive/Colab Notebooks")
+os.getcwd()
+
+#Extract Edges:
+'''
+.
+.
+.
+'''
+
+
 # 1st input model
-frame1 = Input(shape=(25088,))
-hidden1 = Dense(100, activation='relu')(frame1)
-hidden1 = Dense(100, activation='relu')(hidden1)
-output1 = Dense(25088, activation='linear')(hidden1) #frame 2 is output 1
+drop_out=0.2
+dense_one=50
+dense_two=50
+dense_three=10
+dense_four=10
+pixels=50176
+
+frame1 = Input(shape=(pixels,))
+hidden1 = Dense(dense_one)(frame1)
+hidden1 = BatchNormalization()(hidden1)
+hidden1 = Activation('relu')(hidden1)
+hidden1= Dropout(drop_out)(hidden1)
+hidden1 = Dense(dense_two)(hidden1)
+hidden1 = BatchNormalization()(hidden1)
+hidden1 = Activation('relu')(hidden1)
+hidden1= Dropout(drop_out)(hidden1)
+hidden1 = Dense(dense_three)(hidden1)
+hidden1 = BatchNormalization()(hidden1)
+hidden1 = Activation('relu')(hidden1)
+hidden1= Dropout(drop_out)(hidden1)
+hidden1 = Dense(dense_four)(hidden1)
+hidden1 = BatchNormalization()(hidden1)
+hidden1 = Activation('relu')(hidden1)
+hidden1= Dropout(drop_out)(hidden1)
+output1 = Dense(pixels, activation='linear')(hidden1) #frame 2 is output 1
 
 # 2nd input model
-frame2 = Input(shape=(25088,))
-hidden2 = Dense(100, activation='relu')(frame2)
-hidden2 = Dense(100, activation='relu')(hidden2)
-output2 = Dense(25088, activation='linear')(hidden2) #frame 3 is output 2
+frame2 = Input(shape=(pixels,))
+hidden2 = Dense(dense_one)(frame2)
+hidden2 = BatchNormalization()(hidden2)
+hidden2 = Activation('relu')(hidden2)
+hidden2= Dropout(drop_out)(hidden2)
+hidden2 = Dense(dense_two)(hidden2)
+hidden2 = BatchNormalization()(hidden2)
+hidden2 = Activation('relu')(hidden2)
+hidden2= Dropout(drop_out)(hidden2)
+hidden2 = Dense(dense_three)(hidden2)
+hidden2 = BatchNormalization()(hidden2)
+hidden2 = Activation('relu')(hidden2)
+hidden2= Dropout(drop_out)(hidden2)
+hidden2 = Dense(dense_four)(hidden2)
+hidden2 = BatchNormalization()(hidden2)
+hidden2 = Activation('relu')(hidden2)
+hidden2= Dropout(drop_out)(hidden2)
+output2 = Dense(pixels, activation='linear')(hidden2) #frame 3 is output 2
 
 # 3rd input model
-frame3 = Input(shape=(25088,))
-hidden3 = Dense(100, activation='relu')(frame3)
-hidden3 = Dense(100, activation='relu')(hidden3)
-output3 = Dense(25088, activation='linear')(hidden3) #frame 4 is output 3
+frame3 = Input(shape=(pixels,))
+hidden3 = Dense(dense_one)(frame3)
+hidden3 = BatchNormalization()(hidden3)
+hidden3 = Activation('relu')(hidden3)
+hidden3= Dropout(drop_out)(hidden3)
+hidden3 = Dense(dense_two)(hidden3)
+hidden3 = BatchNormalization()(hidden3)
+hidden3 = Activation('relu')(hidden3)
+hidden3= Dropout(drop_out)(hidden3)
+hidden3 = Dense(dense_three)(hidden3)
+hidden3 = BatchNormalization()(hidden3)
+hidden3 = Activation('relu')(hidden3)
+hidden3= Dropout(drop_out)(hidden3)
+hidden3 = Dense(dense_four)(hidden3)
+hidden3 = BatchNormalization()(hidden3)
+hidden3 = Activation('relu')(hidden3)
+hidden3= Dropout(drop_out)(hidden3)
+output3 = Dense(pixels, activation='linear')(hidden3) #frame 4 is output 3
 
 # 4th input model
-frame4 = Input(shape=(25088,))
-hidden4 = Dense(100, activation='relu')(frame4)
-hidden4 = Dense(100, activation='relu')(hidden4)
-output4 = Dense(25088, activation='linear')(hidden4) #frame 5 is output 4
+frame4 = Input(shape=(pixels,))
+hidden4 = Dense(dense_one)(frame3)
+hidden4 = BatchNormalization()(hidden4)
+hidden4 = Activation('relu')(hidden4)
+hidden4= Dropout(drop_out)(hidden4)
+hidden4 = Dense(dense_two)(hidden4)
+hidden4 = BatchNormalization()(hidden4)
+hidden4 = Activation('relu')(hidden4)
+hidden4= Dropout(drop_out)(hidden4)
+hidden4 = Dense(dense_three)(hidden4)
+hidden4 = BatchNormalization()(hidden4)
+hidden4 = Activation('relu')(hidden4)
+hidden4= Dropout(drop_out)(hidden4)
+hidden4 = Dense(dense_four)(hidden4)
+hidden4 = BatchNormalization()(hidden4)
+hidden4 = Activation('relu')(hidden4)
+hidden4= Dropout(drop_out)(hidden4)
+output4 = Dense(pixels, activation='linear')(hidden4) #frame 5 is output 4
 
 # 5th input model
-frame5 = Input(shape=(25088,))
-hidden5 = Dense(100, activation='relu')(frame5)
-hidden5 = Dense(100, activation='relu')(hidden5)
-output5 = Dense(25088, activation='linear')(hidden5) #frame 6 is output 5
+frame5 = Input(shape=(pixels,))
+hidden5 = Dense(dense_one)(frame5)
+hidden5 = BatchNormalization()(hidden5)
+hidden5 = Activation('relu')(hidden5)
+hidden5= Dropout(drop_out)(hidden5)
+hidden5 = Dense(dense_two)(hidden5)
+hidden5 = BatchNormalization()(hidden5)
+hidden5 = Activation('relu')(hidden5)
+hidden5= Dropout(drop_out)(hidden5)
+hidden5 = Dense(dense_three)(hidden5)
+hidden5 = BatchNormalization()(hidden5)
+hidden5 = Activation('relu')(hidden5)
+hidden5= Dropout(drop_out)(hidden5)
+hidden5 = Dense(dense_four)(hidden5)
+hidden5 = BatchNormalization()(hidden5)
+hidden5 = Activation('relu')(hidden5)
+hidden5= Dropout(drop_out)(hidden5)
+output5 = Dense(pixels, activation='linear')(hidden5) #frame 6 is output 5
 
 # 6th input model
-frame6 = Input(shape=(25088,))
-hidden6 = Dense(100, activation='relu')(frame6)
-hidden6 = Dense(100, activation='relu')(hidden6)
-output6 = Dense(25088, activation='linear')(hidden6) #frame 7 is output 6
+frame6 = Input(shape=(pixels,))
+hidden6 = Dense(dense_one)(frame6)
+hidden6 = BatchNormalization()(hidden6)
+hidden6 = Activation('relu')(hidden6)
+hidden6= Dropout(drop_out)(hidden6)
+hidden6 = Dense(dense_two)(hidden6)
+hidden6 = BatchNormalization()(hidden6)
+hidden6 = Activation('relu')(hidden6)
+hidden6= Dropout(drop_out)(hidden6)
+hidden6 = Dense(dense_three)(hidden6)
+hidden6 = BatchNormalization()(hidden6)
+hidden6 = Activation('relu')(hidden6)
+hidden6= Dropout(drop_out)(hidden6)
+hidden6 = Dense(dense_four)(hidden6)
+hidden6 = BatchNormalization()(hidden6)
+hidden6 = Activation('relu')(hidden6)
+hidden6= Dropout(drop_out)(hidden6)
+output6 = Dense(pixels, activation='linear')(hidden6) #frame 7 is output 6
 
 # 7th input model
-frame7 = Input(shape=(25088,))
-hidden7 = Dense(100, activation='relu')(frame7)
-hidden7 = Dense(100, activation='relu')(hidden7)
-output7 = Dense(25088, activation='linear')(hidden7) #frame 8 is output 7
+frame7 = Input(shape=(pixels,))
+hidden7 = Dense(dense_one)(frame7)
+hidden7 = BatchNormalization()(hidden7)
+hidden7 = Activation('relu')(hidden7)
+hidden7= Dropout(drop_out)(hidden7)
+hidden7 = Dense(dense_two)(hidden7)
+hidden7 = BatchNormalization()(hidden7)
+hidden7 = Activation('relu')(hidden7)
+hidden7= Dropout(drop_out)(hidden7)
+hidden7 = Dense(dense_three)(hidden7)
+hidden7 = BatchNormalization()(hidden7)
+hidden7 = Activation('relu')(hidden7)
+hidden7= Dropout(drop_out)(hidden7)
+hidden7 = Dense(dense_four)(hidden7)
+hidden7 = BatchNormalization()(hidden7)
+hidden7 = Activation('relu')(hidden7)
+hidden7= Dropout(drop_out)(hidden7)
+output7 = Dense(pixels, activation='linear')(hidden7) #frame 8 is output 7
 
 # 8th input model
-frame8 = Input(shape=(25088,))
-hidden8 = Dense(100, activation='relu')(frame8)
-hidden8 = Dense(100, activation='relu')(hidden8)
-output8 = Dense(25088, activation='linear')(hidden8) #frame 9 is output 8
+frame8 = Input(shape=(pixels,))
+hidden8 = Dense(dense_one)(frame8)
+hidden1 = BatchNormalization()(hidden8)
+hidden8 = Activation('relu')(hidden8)
+hidden8= Dropout(drop_out)(hidden8)
+hidden8 = Dense(dense_two)(hidden8)
+hidden8 = BatchNormalization()(hidden8)
+hidden8 = Activation('relu')(hidden8)
+hidden8= Dropout(drop_out)(hidden8)
+hidden8 = Dense(dense_three)(hidden8)
+hidden8 = BatchNormalization()(hidden8)
+hidden8 = Activation('relu')(hidden8)
+hidden8= Dropout(drop_out)(hidden8)
+hidden8 = Dense(dense_four)(hidden8)
+hidden8 = BatchNormalization()(hidden8)
+hidden8 = Activation('relu')(hidden8)
+hidden8= Dropout(drop_out)(hidden8)
+output8 = Dense(pixels, activation='linear')(hidden8) #frame 9 is output 8
 
 # 9th input model
-frame9 = Input(shape=(25088,))
-hidden9 = Dense(100, activation='relu')(frame9)
-hidden9 = Dense(100, activation='relu')(hidden9)
-output9 = Dense(25088, activation='linear')(hidden9) #frame 10 is output 9
+frame9 = Input(shape=(pixels,))
+hidden9 = Dense(dense_one)(frame9)
+hidden9 = BatchNormalization()(hidden9)
+hidden9 = Activation('relu')(hidden9)
+hidden9= Dropout(drop_out)(hidden9)
+hidden9 = Dense(dense_two)(hidden9)
+hidden9 = BatchNormalization()(hidden9)
+hidden9 = Activation('relu')(hidden9)
+hidden9= Dropout(drop_out)(hidden9)
+hidden9 = Dense(dense_three)(hidden9)
+hidden9 = BatchNormalization()(hidden9)
+hidden9 = Activation('relu')(hidden9)
+hidden9= Dropout(drop_out)(hidden9)
+hidden9 = Dense(dense_four)(hidden9)
+hidden9 = BatchNormalization()(hidden9)
+hidden9 = Activation('relu')(hidden9)
+hidden9= Dropout(drop_out)(hidden9)
+output9 = Dense(pixels, activation='linear')(hidden9) #frame 10 is output 9
 
-model = Model(inputs=[frame1, frame2, frame3,frame4, frame5, frame6,frame7, frame8, frame9], outputs=[output1, output2, output3,output4, output5, output6, output7,output8, output9])
-
-# summarize layers
-print(model.summary())
-# plot graph
-plot_model(model, to_file='model.png')
+model = Model(inputs=[frame1, frame2, frame3,frame4, frame5, frame6,frame7, frame8, frame9],
+              outputs=[output1, output2, output3,output4, output5, output6, output7,output8, output9])
 
 
 #Compile the model
-model.compile(optimizer='adam', loss='mean_absolute_error', metrics=['mean_squared_error'])
+opt = Adam(lr=1e-3, decay=1e-3 / 200)
+model.compile(optimizer=opt, loss='mse', metrics=['mse'])
+
+# summarize layers
+print(model.summary())
+
+# plot graph
+plot_model(model, to_file='model.png')
 
 from keras.callbacks import ReduceLROnPlateau
 
@@ -368,209 +534,6 @@ compare_images(original, shopped, "Original vs. Photoshopped")
 
 
 
-
-#different Look
-# Multiple Inputs
-
-#Idea here: Get the weights, run the new frames on the weights, if the loss<threshhold == class 1
-
-# 1st input model
-drop_out=0.2
-dense_one=50
-dense_two=50
-dense_three=10
-dense_four=10
-pixels=50176
-
-frame1 = Input(shape=(pixels,))
-hidden1 = Dense(dense_one)(frame1)
-hidden1 = BatchNormalization()(hidden1)
-hidden1 = Activation('relu')(hidden1)
-hidden1= Dropout(drop_out)(hidden1)
-hidden1 = Dense(dense_two)(hidden1)
-hidden1 = BatchNormalization()(hidden1)
-hidden1 = Activation('relu')(hidden1)
-hidden1= Dropout(drop_out)(hidden1)
-hidden1 = Dense(dense_three)(hidden1)
-hidden1 = BatchNormalization()(hidden1)
-hidden1 = Activation('relu')(hidden1)
-hidden1= Dropout(drop_out)(hidden1)
-hidden1 = Dense(dense_four)(hidden1)
-hidden1 = BatchNormalization()(hidden1)
-hidden1 = Activation('relu')(hidden1)
-hidden1= Dropout(drop_out)(hidden1)
-output1 = Dense(pixels, activation='linear')(hidden1) #frame 2 is output 1
-
-# 2nd input model
-frame2 = Input(shape=(pixels,))
-hidden2 = Dense(dense_one)(frame2)
-hidden2 = BatchNormalization()(hidden2)
-hidden2 = Activation('relu')(hidden2)
-hidden2= Dropout(drop_out)(hidden2)
-hidden2 = Dense(dense_two)(hidden2)
-hidden2 = BatchNormalization()(hidden2)
-hidden2 = Activation('relu')(hidden2)
-hidden2= Dropout(drop_out)(hidden2)
-hidden2 = Dense(dense_three)(hidden2)
-hidden2 = BatchNormalization()(hidden2)
-hidden2 = Activation('relu')(hidden2)
-hidden2= Dropout(drop_out)(hidden2)
-hidden2 = Dense(dense_four)(hidden2)
-hidden2 = BatchNormalization()(hidden2)
-hidden2 = Activation('relu')(hidden2)
-hidden2= Dropout(drop_out)(hidden2)
-output2 = Dense(pixels, activation='linear')(hidden2) #frame 3 is output 2
-
-# 3rd input model
-frame3 = Input(shape=(pixels,))
-hidden3 = Dense(dense_one)(frame3)
-hidden3 = BatchNormalization()(hidden3)
-hidden3 = Activation('relu')(hidden3)
-hidden3= Dropout(drop_out)(hidden3)
-hidden3 = Dense(dense_two)(hidden3)
-hidden3 = BatchNormalization()(hidden3)
-hidden3 = Activation('relu')(hidden3)
-hidden3= Dropout(drop_out)(hidden3)
-hidden3 = Dense(dense_three)(hidden3)
-hidden3 = BatchNormalization()(hidden3)
-hidden3 = Activation('relu')(hidden3)
-hidden3= Dropout(drop_out)(hidden3)
-hidden3 = Dense(dense_four)(hidden3)
-hidden3 = BatchNormalization()(hidden3)
-hidden3 = Activation('relu')(hidden3)
-hidden3= Dropout(drop_out)(hidden3)
-output3 = Dense(pixels, activation='linear')(hidden3) #frame 4 is output 3
-
-# 4th input model
-frame4 = Input(shape=(pixels,))
-hidden4 = Dense(dense_one)(frame3)
-hidden4 = BatchNormalization()(hidden4)
-hidden4 = Activation('relu')(hidden4)
-hidden4= Dropout(drop_out)(hidden4)
-hidden4 = Dense(dense_two)(hidden4)
-hidden4 = BatchNormalization()(hidden4)
-hidden4 = Activation('relu')(hidden4)
-hidden4= Dropout(drop_out)(hidden4)
-hidden4 = Dense(dense_three)(hidden4)
-hidden4 = BatchNormalization()(hidden4)
-hidden4 = Activation('relu')(hidden4)
-hidden4= Dropout(drop_out)(hidden4)
-hidden4 = Dense(dense_four)(hidden4)
-hidden4 = BatchNormalization()(hidden4)
-hidden4 = Activation('relu')(hidden4)
-hidden4= Dropout(drop_out)(hidden4)
-output4 = Dense(pixels, activation='linear')(hidden4) #frame 5 is output 4
-
-# 5th input model
-frame5 = Input(shape=(pixels,))
-hidden5 = Dense(dense_one)(frame5)
-hidden5 = BatchNormalization()(hidden5)
-hidden5 = Activation('relu')(hidden5)
-hidden5= Dropout(drop_out)(hidden5)
-hidden5 = Dense(dense_two)(hidden5)
-hidden5 = BatchNormalization()(hidden5)
-hidden5 = Activation('relu')(hidden5)
-hidden5= Dropout(drop_out)(hidden5)
-hidden5 = Dense(dense_three)(hidden5)
-hidden5 = BatchNormalization()(hidden5)
-hidden5 = Activation('relu')(hidden5)
-hidden5= Dropout(drop_out)(hidden5)
-hidden5 = Dense(dense_four)(hidden5)
-hidden5 = BatchNormalization()(hidden5)
-hidden5 = Activation('relu')(hidden5)
-hidden5= Dropout(drop_out)(hidden5)
-output5 = Dense(pixels, activation='linear')(hidden5) #frame 6 is output 5
-
-# 6th input model
-frame6 = Input(shape=(pixels,))
-hidden6 = Dense(dense_one)(frame6)
-hidden6 = BatchNormalization()(hidden6)
-hidden6 = Activation('relu')(hidden6)
-hidden6= Dropout(drop_out)(hidden6)
-hidden6 = Dense(dense_two)(hidden6)
-hidden6 = BatchNormalization()(hidden6)
-hidden6 = Activation('relu')(hidden6)
-hidden6= Dropout(drop_out)(hidden6)
-hidden6 = Dense(dense_three)(hidden6)
-hidden6 = BatchNormalization()(hidden6)
-hidden6 = Activation('relu')(hidden6)
-hidden6= Dropout(drop_out)(hidden6)
-hidden6 = Dense(dense_four)(hidden6)
-hidden6 = BatchNormalization()(hidden6)
-hidden6 = Activation('relu')(hidden6)
-hidden6= Dropout(drop_out)(hidden6)
-output6 = Dense(pixels, activation='linear')(hidden6) #frame 7 is output 6
-
-# 7th input model
-frame7 = Input(shape=(pixels,))
-hidden7 = Dense(dense_one)(frame7)
-hidden7 = BatchNormalization()(hidden7)
-hidden7 = Activation('relu')(hidden7)
-hidden7= Dropout(drop_out)(hidden7)
-hidden7 = Dense(dense_two)(hidden7)
-hidden7 = BatchNormalization()(hidden7)
-hidden7 = Activation('relu')(hidden7)
-hidden7= Dropout(drop_out)(hidden7)
-hidden7 = Dense(dense_three)(hidden7)
-hidden7 = BatchNormalization()(hidden7)
-hidden7 = Activation('relu')(hidden7)
-hidden7= Dropout(drop_out)(hidden7)
-hidden7 = Dense(dense_four)(hidden7)
-hidden7 = BatchNormalization()(hidden7)
-hidden7 = Activation('relu')(hidden7)
-hidden7= Dropout(drop_out)(hidden7)
-output7 = Dense(pixels, activation='linear')(hidden7) #frame 8 is output 7
-
-# 8th input model
-frame8 = Input(shape=(pixels,))
-hidden8 = Dense(dense_one)(frame8)
-hidden1 = BatchNormalization()(hidden8)
-hidden8 = Activation('relu')(hidden8)
-hidden8= Dropout(drop_out)(hidden8)
-hidden8 = Dense(dense_two)(hidden8)
-hidden8 = BatchNormalization()(hidden8)
-hidden8 = Activation('relu')(hidden8)
-hidden8= Dropout(drop_out)(hidden8)
-hidden8 = Dense(dense_three)(hidden8)
-hidden8 = BatchNormalization()(hidden8)
-hidden8 = Activation('relu')(hidden8)
-hidden8= Dropout(drop_out)(hidden8)
-hidden8 = Dense(dense_four)(hidden8)
-hidden8 = BatchNormalization()(hidden8)
-hidden8 = Activation('relu')(hidden8)
-hidden8= Dropout(drop_out)(hidden8)
-output8 = Dense(pixels, activation='linear')(hidden8) #frame 9 is output 8
-
-# 9th input model
-frame9 = Input(shape=(pixels,))
-hidden9 = Dense(dense_one)(frame9)
-hidden9 = BatchNormalization()(hidden9)
-hidden9 = Activation('relu')(hidden9)
-hidden9= Dropout(drop_out)(hidden9)
-hidden9 = Dense(dense_two)(hidden9)
-hidden9 = BatchNormalization()(hidden9)
-hidden9 = Activation('relu')(hidden9)
-hidden9= Dropout(drop_out)(hidden9)
-hidden9 = Dense(dense_three)(hidden9)
-hidden9 = BatchNormalization()(hidden9)
-hidden9 = Activation('relu')(hidden9)
-hidden9= Dropout(drop_out)(hidden9)
-hidden9 = Dense(dense_four)(hidden9)
-hidden9 = BatchNormalization()(hidden9)
-hidden9 = Activation('relu')(hidden9)
-hidden9= Dropout(drop_out)(hidden9)
-output9 = Dense(pixels, activation='linear')(hidden9) #frame 10 is output 9
-
-model = Model(inputs=[frame1, frame2, frame3,frame4, frame5, frame6,frame7, frame8, frame9],
-              outputs=[output1, output2, output3,output4, output5, output6, output7,output8, output9])
-
-
-#Compile the model
-opt = Adam(lr=1e-3, decay=1e-3 / 200)
-model.compile(optimizer=opt, loss='mse', metrics=['mse'])
-
-# summarize layers
-print(model.summary())
 
 #########################
 When you call a model, like this:
