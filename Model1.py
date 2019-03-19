@@ -264,53 +264,28 @@ Trying to convert videos to frames now. then run the model
 
 #
 use l2 and l1 regularization - model is not overfitting so I dont think I need regularization
-perhaps just get the edges (instead of the last layer of VGG) of a 96x96 say images
-then use ssim loss to compare
-perhaps use 96x96, get edges, run model1, train it. then compare 9 images using MSSIM loss function
-if SSIM doesnt work:
-I still need to compare the first image to the next
-So I still need the edges
-also need to convert to 96x96?
-
 
 for tomorrow:
-check loss before and after each one
-normalize the data
-Change batch size
-grid search for hyperparameters =Tried gridcv- cant use functional api. Now trying talos (once I can do grid search I can use search for H.P)
-Add dropout layer.
-batch norm- right after FC/CNN but before activation like relu
-give it time
-check if validation_split doesnt shuffle - nope. it takes 10% of the last data (if its set to 0.1?)
-Is the network size is too small / large?
-decrease learning rate
-increase training size
-change the image from /255
-
-save weights of the model so you can load them and continue
-
+V check loss before and after each one
+V normalize the data
+V Change batch size
+grid search for hyperparameters =Tried gridcv- cant use functional api. Now trying talos (once I can do grid search I can use search for H.P)--> Try different activation functions, loss function, optimizer.
+V Add dropout layer.
+V batch norm- right after FC/CNN but before activation like relu
+V check if validation_split doesnt shuffle - nope. it takes 10% of the last data (if its set to 0.1?)
+V Is the network size is too small / large?
+V increase training size
+V change the image from /255
+Play with the learning rate
 Try initialise weights with different initialization scheme.
-Try different activation functions, loss function, optimizer.
-regularization
 perhaps run VGG on edges and then run reg.
-
-from keras import regularizers
-model.add(Dense(64, input_dim=64,
-                kernel_regularizer=regularizers.l2(0.01),
-                activity_regularizer=regularizers.l1(0.01)))
-
-keras.regularizers.l1(0.)
-keras.regularizers.l2(0.)
-keras.regularizers.l1_l2(l1=0.01, l2=0.01)
 
 
 DONT FORGET THAT THE POINT IS TO PREDICT AT THE END
 ADJUST AS MUCH AS YOU CAN THEN PREDICT
 Make prediction with one input?
 
-I CAN PREDICT!!!!!!!!!!!!!!!!!!!!!
 Problem:
-Images are terrible so the model might not work with them (not saying the model is bad- it might be)
 '''
 
 
