@@ -1,6 +1,20 @@
 '''Motion Net'''
 '''Idea here: Get the weights, run the new frames on the weights, if the loss<threshhold == class 1
 THIS MODEL IS MEANT TO ONLY WORK ON ONE MOVEMENT
+
+train1=[frame1,frame2...frame_N-9]
+train2=[frame2,frame3...frame_N-8]
+train9=[frame9,frame10...frame_N-1] #Note that we go up to N-1 because we need the last frame to be an output
+
+*** Look at them from top to bottom: train1[0],train2[0]...train9[0] is sequence 1.
+
+and
+output1=[frame2,frame3...frame_N-8]
+output2=[frame3,frame4...frame_N-7]
+output9=[frame10,frame11...frame_N] #Note that we go up to N because the last frame is an output
+
+
+
 '''
 #Libraries
 from keras.utils import plot_model
@@ -38,6 +52,63 @@ os.getcwd()
 .
 .
 '''
+
+#Load the data
+
+train1=[]
+train2=[]
+train3=[]
+train4=[]
+train5=[]
+train6=[]
+train7=[]
+train8=[]
+train9=[]
+
+train1=shorter_list[:-9]
+train2=shorter_list[1:-8]
+train3=shorter_list[2:-7]
+train4=shorter_list[3:-6]
+train5=shorter_list[4:-5]
+train6=shorter_list[5:-4]
+train7=shorter_list[6:-3]
+train8=shorter_list[7:-2]
+train9=shorter_list[8:-1]
+
+y1=shorter_list[1:-8]
+y2=shorter_list[2:-7]
+y3=shorter_list[3:-6]
+y4=shorter_list[4:-5]
+y5=shorter_list[5:-4]
+y6=shorter_list[6:-3]
+y7=shorter_list[7:-2]
+y8=shorter_list[8:-1]
+y9=shorter_list[9:]
+
+def flat(list):
+    count=0
+    for arr in list:
+        newarr=arr.reshape(50176)
+        list[count]=newarr
+        count+=1
+flat(y1)
+flat(y2)
+flat(y3)
+flat(y4)
+flat(y5)
+flat(y6)
+flat(y7)
+flat(y8)
+flat(y9)
+flat(train1)
+flat(train2)
+flat(train3)
+flat(train4)
+flat(train5)
+flat(train6)
+flat(train7)
+flat(train8)
+flat(train9)
 
 
 # 1st input model
@@ -230,7 +301,6 @@ output9 = Dense(pixels, activation='linear')(hidden9) #frame 10 is output 9
 model = Model(inputs=[frame1, frame2, frame3,frame4, frame5, frame6,frame7, frame8, frame9],
               outputs=[output1, output2, output3,output4, output5, output6, output7,output8, output9])
 
-
 #Compile the model
 opt = Adam(lr=1e-3, decay=1e-3 / 200)
 model.compile(optimizer=opt, loss='mse', metrics=['mse'])
@@ -241,12 +311,11 @@ print(model.summary())
 # plot graph
 plot_model(model, to_file='model.png')
 
-from keras.callbacks import ReduceLROnPlateau
 
+from keras.callbacks import ReduceLROnPlateau
 #Early Stop
 earlystop = EarlyStopping(patience=2)         # Stop training when `val_loss` is no longer improving
         # "no longer improving" being further defined as "for at least 2 epochs"
-
 
 #Learning Rate Reduction
 #We will reduce the learning rate when then accuracy not increase for 2 steps
@@ -259,129 +328,26 @@ learning_rate_reduction = ReduceLROnPlateau(monitor='loss',
 
 callbacks = [earlystop, learning_rate_reduction]
 
+#load weights
+model.load_weights('model_weights.h5')
+
 #Fit
 history = model.fit(x=[train1,train2,train3,train4,train5,train6,train7,train8,train9],
           y=[y1,y2,y3,y4,y5,y6,y7,y8,y9], callbacks=callbacks,
-          batch_size=100, epochs=10, verbose=1, validation_split=0.1, shuffle=False)
+          batch_size=10, epochs=90, verbose=1, validation_split=0.1, shuffle=False)
 
-#y=list of Numpy arrays of target (label) data
 
-#Save weights only (I tried saving the entire model but it didn't seem to work)
 # Save the weights
 model.save_weights('model_weights.h5')
 
-#Then in order to load the weights:
-#Run everything until the fit (compile and everything) and run the following:
-#load weights
-model.load_weights('model_weights.h5')
 
 #Virtualize Training
 fig, ax = plt.subplots(2,1)
 ax[0].plot(history.history['loss'], color='b', label="Training loss")
 ax[0].plot(history.history['val_loss'], color='r', label="validation loss",axes =ax[0])
 legend = ax[0].legend(loc='best', shadow=True)
-
-
-'''perhaps for the inputs I need to put x[0], x[1]...
-Almost done.
-Just need to be able to choose the numbers for the outputs
-
-x: Numpy array of training data (if the model has a single input)==> x= [ [image1],[image2]...]
-or list of Numpy arrays (if the model has multiple inputs) ==> x= [ [ [f1],[f2]...[f9] ], [ [f2],[f3]...[f10] ] ]
-If input layers in the model are named, you can also pass a dictionary mapping input names to Numpy arrays.  x can be None (default) if feeding from framework-native tensors (e.g. TensorFlow data tensors).
-y: Numpy array of target (label) data (if the model has a single output), or list of Numpy arrays (if the model has multiple outputs). If output layers in the model are named, you can also pass a dictionary mapping output names to Numpy arrays.  y can be None (default) if feeding from framework-native tensors (e.g. TensorFlow data tensors).
-
-model.fit([train_X_hour, train_X_port], [train_Y_hour, train_Y_port] epochs=10 batch_size=1, verbose=2, shuffle=False)
-
-so Maybe
-model.fit([train1,train2,train3,train4,train5,train6,train7,train8,train9],[ouput1,output2,output3,ouput4,output5,output6,ouput7,output8,output9],...)
-where
-train1=[frame1,frame2...frame_N-9]
-train2=[frame2,frame3...frame_N-8]
-...
-train9=[frame9,frame10...frame_N-1] #Note that we go up to N-1 because we need the last frame to be an output
-
-*** Look at them from top to bottom: train1[0],train2[0]...train9[0] is sequence 1.
-
-and
-output1=[frame2,frame3...frame_N-8]
-output2=[frame3,frame4...frame_N-7]
-...
-output9=[frame10,frame11...frame_N] #Note that we go up to N because the last frame is an output
-
-'''
-
-#Load the data
-
-#folder with images
-image_dir=os.listdir('video')
-#create a list to hold the array of pixels of each image
-images_array=[]
-#place the pixels for each image in the list
-for image in image_dir:
-    images_array.append(mpimg.imread('video/'+str(image)))
-
-
-len(images_array)
-
-
-
-#imgplot = plt.imshow(img)
-train1=[]
-train2=[]
-train3=[]
-train4=[]
-train5=[]
-train6=[]
-train7=[]
-train8=[]
-train9=[]
-
-train1=images_array[:-9]
-train2=images_array[1:-8]
-train3=images_array[2:-7]
-train4=images_array[3:-6]
-train5=images_array[4:-5]
-train6=images_array[5:-4]
-train7=images_array[6:-3]
-train8=images_array[7:-2]
-train9=images_array[8:-1]
-
-output1=images_array[1:-8]
-output2=images_array[2:-7]
-output3=images_array[3:-6]
-output4=images_array[4:-5]
-output5=images_array[5:-4]
-output6=images_array[6:-3]
-output7=images_array[7:-2]
-output8=images_array[8:-1]
-output9=images_array[9:]
-
-def flat(list):
-    count=0
-    for arr in list:
-        newarr=arr.reshape(25088)
-        list[count]=newarr
-        count+=1
-flat(y1)
-flat(y2)
-flat(y3)
-flat(y4)
-flat(y5)
-flat(y6)
-flat(y7)
-flat(y8)
-flat(y9)
-flat(train1)
-flat(train2)
-flat(train3)
-flat(train4)
-flat(train5)
-flat(train6)
-flat(train7)
-flat(train8)
-flat(train9)
-
+ax[1].plot(history.history['loss'], color='b', label="Training loss")
+ax[1].plot(history.history['val_loss'], color='r', label="validation loss",axes =ax[1])
 
 
 #get the Loss
@@ -389,6 +355,54 @@ hist = pd.DataFrame(history.history)
 #hist['epoch'] = history.epoch
 #hist.tail()
 hist[-1:]
+
+#Predicting
+
+#test_list=images_array[1015:1024]
+test_list=images_array[1:10]
+len(test_list)
+
+flat(test_list)
+test_list[1]=np.expand_dims(test_list[1],axis=0)
+test_list[2]=np.expand_dims(test_list[2],axis=0)
+test_list[3]=np.expand_dims(test_list[3],axis=0)
+test_list[4]=np.expand_dims(test_list[4],axis=0)
+test_list[5]=np.expand_dims(test_list[5],axis=0)
+test_list[6]=np.expand_dims(test_list[6],axis=0)
+test_list[7]=np.expand_dims(test_list[7],axis=0)
+test_list[8]=np.expand_dims(test_list[8],axis=0)
+test_list[0]=np.expand_dims(test_list[0],axis=0)
+
+(a1,a2,a3,a4,a5,a6,a7,a8,a9)=model.predict([ test_list[0],test_list[1],test_list[2],test_list[3],test_list[4],test_list[5],test_list[6],test_list[7],test_list[8] ])
+
+a1=np.reshape(a1,(224,224))
+a2=np.reshape(a2,(224,224))
+a3=np.reshape(a4,(224,224))
+a4=np.reshape(a4,(224,224))
+a5=np.reshape(a5,(224,224))
+a6=np.reshape(a6,(224,224))
+a7=np.reshape(a7,(224,224))
+a8=np.reshape(a8,(224,224))
+a9=np.reshape(a9,(224,224))
+
+
+output_image=np.array([a1,a2,a3,a4,a5,a6,a7,a8,a9])
+output_image.shape
+
+#plot an image
+plt.imshow(output_image[1,:,:])
+
+#plot a big image
+fig = plt.figure(figsize=(18, 18))
+plt.imshow(a1,cmap='gray')
+
+
+#plot the sequence of images
+fig = plt.figure(figsize=(20, 10))  # width, height in inches
+for i in range(9):
+    sub = fig.add_subplot(3, 3, i + 1)
+    sub.imshow(output_image[i,:,:], interpolation='nearest')
+
 
 '''
 plan:
@@ -455,78 +469,6 @@ Problem:
 '''
 
 
-
-
-#Loss function
-def mse(imageA, imageB):
-	# the 'Mean Squared Error' between the two images is the
-	# sum of the squared difference between the two images;
-	# NOTE: the two images must have the same dimension
-	err = np.sum((imageA.astype("float") - imageB.astype("float")) ** 2)
-	err /= float(imageA.shape[0] * imageA.shape[1])
-
-	# return the MSE, the lower the error, the more "similar"
-	# the two images are
-	return err
-
-def compare_images(imageA, imageB, title):
-	# compute the mean squared error and structural similarity
-	# index for the images
-	m = mse(imageA, imageB)
-	s = ssim(imageA, imageB)
-
-	# setup the figure
-	fig = plt.figure(title)
-	plt.suptitle("MSE: %.2f, SSIM: %.2f" % (m, s))
-
-	# show first image
-	ax = fig.add_subplot(1, 2, 1)
-	plt.imshow(imageA, cmap = plt.cm.gray)
-	plt.axis("off")
-
-	# show the second image
-	ax = fig.add_subplot(1, 2, 2)
-	plt.imshow(imageB, cmap = plt.cm.gray)
-	plt.axis("off")
-
-	# show the images
-	plt.show()
-
-
-# load the images -- the original, the original + contrast,
-# and the original + photoshop
-original = cv2.imread("images/jp_gates_original.png")
-contrast = cv2.imread("images/jp_gates_contrast.png")
-shopped = cv2.imread("images/jp_gates_photoshopped.png")
-
-# convert the images to grayscale
-original = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
-contrast = cv2.cvtColor(contrast, cv2.COLOR_BGR2GRAY)
-shopped = cv2.cvtColor(shopped, cv2.COLOR_BGR2GRAY)
-
-
-# initialize the figure
-fig = plt.figure("Images")
-images = ("Original", original), ("Contrast", contrast), ("Photoshopped", shopped)
-
-# loop over the images
-for (i, (name, image)) in enumerate(images):
-	# show the image
-	ax = fig.add_subplot(1, 3, i + 1)
-	ax.set_title(name)
-	plt.imshow(image, cmap = plt.cm.gray)
-	plt.axis("off")
-
-# show the figure
-plt.show()
-
-# compare the images
-compare_images(original, original, "Original vs. Original")
-compare_images(original, contrast, "Original vs. Contrast")
-compare_images(original, shopped, "Original vs. Photoshopped")
-
-!git clone https://github.com/keras-team/keras-contrib
-!git clone https://github.com/keras-team/keras-contrib/tree/master/keras_contrib
 
 
 
