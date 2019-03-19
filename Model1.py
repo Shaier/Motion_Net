@@ -263,8 +263,7 @@ Trying to convert videos to frames now. then run the model
 
 
 #
-
-use l2 and l1 regularization
+use l2 and l1 regularization - model is not overfitting so I dont think I need regularization
 perhaps just get the edges (instead of the last layer of VGG) of a 96x96 say images
 then use ssim loss to compare
 perhaps use 96x96, get edges, run model1, train it. then compare 9 images using MSSIM loss function
