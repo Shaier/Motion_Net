@@ -1,6 +1,6 @@
 '''Comparing images'''
 
-
+'''
 3/10- now when the model is running i need a way to compare testing images
 2.Inserting 9 images, getting an output of 9 images
 
@@ -17,7 +17,7 @@ SSIM attempts to model the perceived change in the structural information of the
 Furthermore, the equation in Equation 2 is used to compare two windows (i.e. small sub-samples) rather than the entire image as in MSE. Doing this leads to a more robust approach that is able to account for changes in the structure of the image, rather than just the perceived change.
 The parameters to Equation 2 include the (x, y) location of the N x N window in each image, the mean of the pixel intensities in the x and y direction, the variance of intensities in the x and y direction, along with the covariance.
 Unlike MSE, the SSIM value can vary between -1 and 1, where 1 indicates perfect similarity.
-
+'''
 
 # import the necessary packages
 from skimage.measure import structural_similarity as ssim
