@@ -17,6 +17,14 @@ SSIM attempts to model the perceived change in the structural information of the
 Furthermore, the equation in Equation 2 is used to compare two windows (i.e. small sub-samples) rather than the entire image as in MSE. Doing this leads to a more robust approach that is able to account for changes in the structure of the image, rather than just the perceived change.
 The parameters to Equation 2 include the (x, y) location of the N x N window in each image, the mean of the pixel intensities in the x and y direction, the variance of intensities in the x and y direction, along with the covariance.
 Unlike MSE, the SSIM value can vary between -1 and 1, where 1 indicates perfect similarity.
+
+then use ssim loss to compare
+perhaps use 96x96, get edges, run model1, train it. then compare 9 images using MSSIM loss function
+if SSIM doesnt work:
+I still need to compare the first image to the next
+So I still need the edges
+also need to convert to 96x96?
+
 '''
 
 # import the necessary packages
