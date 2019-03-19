@@ -1,6 +1,10 @@
 #Hyperparameter search
 #talos?
 
+!pip install talos
+import talos as ta
+
+
 from keras.wrappers.scikit_learn import KerasRegressor
 
 parameters = {'activation':['relu', 'elu'],
