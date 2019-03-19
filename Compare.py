@@ -26,6 +26,9 @@ So I still need the edges
 also need to convert to 96x96?
 '''
 
+#Not surpassingly, the original image is identical to itself, with a value of 0.0 for MSE and 1.0 for SSIM. Remember, as
+#the MSE increases the images are less similar, as opposed to the SSIM where smaller values indicate less similarity.
+
 
 # import the necessary packages
 from skimage.measure import structural_similarity as ssim

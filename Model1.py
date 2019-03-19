@@ -469,14 +469,6 @@ Problem:
 '''
 
 
-
-
-
-#SSIM LOSS FUNCTION:
-
-
-
-
 #########################
 When you call a model, like this:
 
@@ -538,3 +530,10 @@ fig = plt.figure(figsize=(20, 10))  # width, height in inches
 for i in range(9):
     sub = fig.add_subplot(3, 3, i + 1)
     sub.imshow(output_image[i,:,:], interpolation='nearest')
+
+
+
+#################################
+3/18
+
+Try using  SSIM as loss function?
