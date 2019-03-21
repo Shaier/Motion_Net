@@ -7,7 +7,6 @@ train2=[frame2,frame3...frame_N-8]
 train9=[frame9,frame10...frame_N-1] #Note that we go up to N-1 because we need the last frame to be an output
 
 *** Look at them from top to bottom: train1[0],train2[0]...train9[0] is sequence 1.
-
 and
 output1=[frame2,frame3...frame_N-8]
 output2=[frame3,frame4...frame_N-7]
