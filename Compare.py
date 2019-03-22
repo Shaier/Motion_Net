@@ -19,10 +19,6 @@ Unlike MSE, the SSIM value can vary between -1 and 1, where 1 indicates perfect 
 
 then use ssim loss to compare
 perhaps use 96x96, get edges, run model1, train it. then compare 9 images using MSSIM loss function
-if SSIM doesnt work:
-I still need to compare the first image to the next
-So I still need the edges
-also need to convert to 96x96?
 '''
 
 #Not surpassingly, the original image is identical to itself, with a value of 0.0 for MSE and 1.0 for SSIM. Remember, as
