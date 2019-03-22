@@ -26,10 +26,10 @@ def FrameCapture(video_path,video_name,images_path):
             # Saves the frames with frame-count
             #cv2.imwrite(images_path+'\\'+video_name+"frame%d.jpg" % count, image)
             cv2.imwrite(images_path+'\\'+"%d.jpg" % count, image)
-            count += 1
+        count += 1
 
 #Calling the function
-FrameCapture('C:\\Users\\sagi\\Desktop\\test\\dance.mp4','dance','C:\\Users\\sagi\\Desktop\\test')
+FrameCapture('C:\\Users\\sagi\\Desktop\\test\\test1.mp4','test','C:\\Users\\sagi\\Desktop\\test')
 
 '''
 videos_path='salsa_dance_videos/'
