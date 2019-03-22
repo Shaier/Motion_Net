@@ -19,6 +19,17 @@ Unlike MSE, the SSIM value can vary between -1 and 1, where 1 indicates perfect 
 
 then use ssim loss to compare
 perhaps use 96x96, get edges, run model1, train it. then compare 9 images using MSSIM loss function
+
+
+3/22
+take 9 diff images (make sure you have 2 of each - frame 1 and frame 2)
+compare the similarities
+
+get a sequence of another MOVEMENT
+predict
+get the SSIM
+add them all
+compare that score to the SSIM from a correct sequence
 '''
 
 #Not surpassingly, the original image is identical to itself, with a value of 0.0 for MSE and 1.0 for SSIM. Remember, as
