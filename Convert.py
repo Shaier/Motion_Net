@@ -3,8 +3,8 @@
 import cv2
 import os
 
-os.chdir('C:\\Users\\sagi\\Desktop\\test')
-os.getcwd()
+#os.chdir('C:\\Users\\sagi\\Desktop\\test')
+#os.getcwd()
 
 # Function to extract frames
 def FrameCapture(video_path,video_name,images_path):
@@ -31,7 +31,7 @@ def FrameCapture(video_path,video_name,images_path):
 #Calling the function
 FrameCapture('C:\\Users\\sagi\\Desktop\\test\\dance.mp4','dance','C:\\Users\\sagi\\Desktop\\test')
 
-
+'''
 videos_path='salsa_dance_videos/'
 vid_dir=os.listdir(videos_path)
 images_path='salsa_dance_images/'
@@ -42,3 +42,4 @@ for video in vid_dir:
   video_name=str(video[0])
   video_path=videos_path+video_name +'.mp4'
   FrameCapture(video_path,video_name,images_path)
+'''
