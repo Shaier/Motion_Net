@@ -5,6 +5,7 @@ import os
 
 os.chdir('C:\\Users\\sagi\\Desktop\\test')
 os.getcwd()
+
 # Function to extract frames
 def FrameCapture(video_path,video_name,images_path):
 
@@ -27,7 +28,7 @@ def FrameCapture(video_path,video_name,images_path):
             cv2.imwrite(images_path+'\\'+"%d.jpg" % count, image)
             count += 1
 
-#Calling the function 
+#Calling the function
 FrameCapture('C:\\Users\\sagi\\Desktop\\test\\dance.mp4','dance','C:\\Users\\sagi\\Desktop\\test')
 
 
