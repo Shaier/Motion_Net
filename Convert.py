@@ -22,11 +22,11 @@ def FrameCapture(video_path,video_name,images_path):
         # vidObj object calls read
         # function extract frames
         success, image = vidObj.read()
-
-        # Saves the frames with frame-count
-#        cv2.imwrite(images_path+'\\'+video_name+"frame%d.jpg" % count, image)
-        cv2.imwrite(images_path+'\\'+"%d.jpg" % count, image)
-        count += 1
+        if count % 10 ==0: #10 frames per sec 
+            # Saves the frames with frame-count
+            #cv2.imwrite(images_path+'\\'+video_name+"frame%d.jpg" % count, image)
+            cv2.imwrite(images_path+'\\'+"%d.jpg" % count, image)
+            count += 1
 
 
 
