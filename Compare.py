@@ -30,6 +30,9 @@ predict
 get the SSIM
 add them all
 compare that score to the SSIM from a correct sequence
+
+*****I need to use several inputs/outputs because one frame might look the same but the others not and at the end Ill get a bad score
+if its a different MOVEMENT
 '''
 
 #Not surpassingly, the original image is identical to itself, with a value of 0.0 for MSE and 1.0 for SSIM. Remember, as
