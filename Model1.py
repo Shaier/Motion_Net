@@ -536,3 +536,13 @@ for i in range(9):
 3/18
 
 Try using  SSIM as loss function?
+
+
+3/23
+focus on 1 angle to see that it works
+
+1. get a video from 1 angle of a person doing activity
+2. get another video from the same angle of another person doing the activity
+3. get a video of another activity from the same angle with the 1st person
+4. get a video of another activity from the same angle with the 1st person
+5. compare 
