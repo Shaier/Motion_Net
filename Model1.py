@@ -1,5 +1,5 @@
 '''Motion Net'''
-'''Idea here: Get the weights, run the new frames on the weights, if the loss<threshhold == class 1
+'''
 THIS MODEL IS MEANT TO ONLY WORK ON ONE MOVEMENT
 
 train1=[frame1,frame2...frame_N-9]
@@ -45,12 +45,6 @@ from keras.models import model_from_json
 os.chdir("/content/gdrive/My Drive/Colab Notebooks")
 os.getcwd()
 
-#Extract Edges:
-'''
-.
-.
-.
-'''
 
 #Load the data
 
