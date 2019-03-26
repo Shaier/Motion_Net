@@ -30,7 +30,8 @@ def FrameCapture(video_path,video_name,images_path):
         count += 1
 
 #Calling the function
-#FrameCapture('C:\\Users\\sagi\\Desktop\\Pool\\chicken\\chicken.mp4','chicken','C:\\Users\\sagi\\Desktop\\Pool\\chicken')
+#FrameCapture('C:\\Users\\sagi\\Desktop\\Pool\\swim_edge\\swim_edge.mp4','swim_edge','C:\\Users\\sagi\\Desktop\\Pool\\swim_edge')
+
 '''
 videos_path='salsa_dance_videos/'
 vid_dir=os.listdir(videos_path)
