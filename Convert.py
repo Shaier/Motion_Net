@@ -6,6 +6,7 @@ import os
 #os.chdir('C:\\Users\\sagi\\Desktop\\test')
 #os.getcwd()
 count=0
+fps=2
 # Function to extract frames
 def FrameCapture(video_path,video_name,images_path):
 
@@ -22,15 +23,14 @@ def FrameCapture(video_path,video_name,images_path):
         # vidObj object calls read
         # function extract frames
         success, image = vidObj.read()
-        if count % 5 ==0: #10 frames per sec
+        if count % fps ==0: #10 frames per sec
             # Saves the frames with frame-count
             #cv2.imwrite(images_path+'\\'+video_name+"frame%d.jpg" % count, image)
-            cv2.imwrite(images_path+'\\'+"%d.jpg" % (count/5), image)
+            cv2.imwrite(images_path+'\\'+"%d.jpg" % (count/fps), image)
         count += 1
 
 #Calling the function
-FrameCapture('C:\\Users\\sagi\\Desktop\\test\\test.mp4','test','C:\\Users\\sagi\\Desktop\\test')
-
+#FrameCapture('C:\\Users\\sagi\\Desktop\\Pool\\chicken\\chicken.mp4','chicken','C:\\Users\\sagi\\Desktop\\Pool\\chicken')
 '''
 videos_path='salsa_dance_videos/'
 vid_dir=os.listdir(videos_path)
