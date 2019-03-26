@@ -22,6 +22,8 @@ if its a different MOVEMENT
 '''
 
 
+!git clone https://github.com/keras-team/keras-contrib
+!git clone https://github.com/keras-team/keras-contrib/tree/master/keras_contrib
 
 # import the necessary packages
 from skimage.measure import structural_similarity as ssim
@@ -67,37 +69,56 @@ def compare_images(imageA, imageB, title):
 	plt.show()
 
 
-# load the images -- the original, the original + contrast,
-# and the original + photoshop
-original = cv2.imread("images/jp_gates_original.png")
-contrast = cv2.imread("images/jp_gates_contrast.png")
-shopped = cv2.imread("images/jp_gates_photoshopped.png")
+#changing the testing images type so they can be compared
 
-# convert the images to grayscale
-original = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
-contrast = cv2.cvtColor(contrast, cv2.COLOR_BGR2GRAY)
-shopped = cv2.cvtColor(shopped, cv2.COLOR_BGR2GRAY)
+output_images[0]=output_images[0].astype('float32')
+output_images[1]=output_images[1].astype('float32')
+output_images[2]=output_images[2].astype('float32')
+output_images[3]=output_images[3].astype('float32')
+output_images[4]=output_images[4].astype('float32')
+output_images[5]=output_images[5].astype('float32')
+output_images[6]=output_images[6].astype('float32')
+output_images[7]=output_images[7].astype('float32')
+output_images[8]=output_images[8].astype('float32')
+
+#test_list=images_array[1:10] #--> use this
+test_list=swim[1:10]
+
+frame1=test_list[0].astype('float32')
+frame2=test_list[1].astype('float32')
+frame3=test_list[2].astype('float32')
+frame4=test_list[3].astype('float32')
+frame5=test_list[4].astype('float32')
+frame6=test_list[5].astype('float32')
+frame7=test_list[6].astype('float32')
+frame8=test_list[7].astype('float32')
+frame9=test_list[8].astype('float32')
 
 
 # initialize the figure
 fig = plt.figure("Images")
-images = ("Original", original), ("Contrast", contrast), ("Photoshopped", shopped)
+images = ("frame1", frame1), ("frame2", frame2), ("frame3", frame3), ("frame4", frame4), ("frame5", frame5), ("frame6", frame6), ("frame7", frame7), ("frame8", frame8), ("frame9", frame9)
+
 
 # loop over the images
 for (i, (name, image)) in enumerate(images):
 	# show the image
-	ax = fig.add_subplot(1, 3, i + 1)
+	ax = fig.add_subplot(1, 9, i + 1)
 	ax.set_title(name)
 	plt.imshow(image, cmap = plt.cm.gray)
 	plt.axis("off")
 
-# show the figure
+#show the figure
 plt.show()
 
+#WE NEED TO COMPARE OUTPUT 1 (a1) TO INPUT 2 (images_array2[1] or frame2), OUTPUT 2 (a2) TO INPUT 3 (images_array2[2] or frame3)...
+''''''
 # compare the images
-compare_images(original, original, "Original vs. Original")
-compare_images(original, contrast, "Original vs. Contrast")
-compare_images(original, shopped, "Original vs. Photoshopped")
-
-!git clone https://github.com/keras-team/keras-contrib
-!git clone https://github.com/keras-team/keras-contrib/tree/master/keras_contrib
+compare_images(output_images[0], frame2, "output 1 vs input 2")
+compare_images(output_images[1], frame3, "output 2 vs input 3")
+compare_images(output_images[2], frame4, "output 3 vs input 4")
+compare_images(output_images[3], frame5, "output 4 vs input 5")
+compare_images(output_images[4], frame6, "output 5 vs input 6")
+compare_images(output_images[5], frame7, "output 6 vs input 7")
+compare_images(output_images[6], frame8, "output 7 vs input 8")
+compare_images(output_images[7], frame9, "output 8 vs input 9")
