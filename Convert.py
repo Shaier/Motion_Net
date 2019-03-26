@@ -1,10 +1,7 @@
-'''Converting videos to frames'''
-# Program To Read video and Extract Frames
+'''Program To Read video and Extract Frames'''
 import cv2
 import os
 
-#os.chdir('C:\\Users\\sagi\\Desktop\\test')
-#os.getcwd()
 count=0
 fps=2
 # Function to extract frames
@@ -33,11 +30,11 @@ def FrameCapture(video_path,video_name,images_path):
 #FrameCapture('C:\\Users\\sagi\\Desktop\\Pool\\swim_edge\\swim_edge.mp4','swim_edge','C:\\Users\\sagi\\Desktop\\Pool\\swim_edge')
 
 '''
-videos_path='salsa_dance_videos/'
+Convert multiple videos
+videos_path='videos'
 vid_dir=os.listdir(videos_path)
-images_path='salsa_dance_images/'
+images_path='images'
 
-#Convert multiple videos
 for video in vid_dir:
   video=video.split('.')
   video_name=str(video[0])
