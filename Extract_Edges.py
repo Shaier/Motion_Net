@@ -1,4 +1,4 @@
-'''detect edges:'''
+'''Extract Edges:'''
 
 !pip install Mahotas
 os.chdir("/content/gdrive/My Drive/Colab Notebooks/Image-feature-detection-using-Phase-Stretch-Transform/Python")
@@ -7,22 +7,21 @@ import PST_function
 from PST_function import PST
 import mahotas as mh
 
-#Extract features
-os.chdir("/content/gdrive/My Drive/Colab Notebooks")
+os.chdir("/content/gdrive/My Drive/Colab Notebooks/Motion_Net")
 #folder with images
-image_dir=os.listdir('salsa')
-img_path = 'salsa/'
+image_dir=os.listdir('swim_edge')
+img_path = 'swim_edge/'
 
 #create a list to hold the array of pixels of each image
-images_array=[]
+swim=[]
 count=0
 #place the pixels for each image in the list
-while len(images_array)<len(os.listdir('salsa')) and count<500:
-  for image_name in os.listdir('salsa'):
+while len(swim)<len(os.listdir('swim_edge')) and count<500:
+  for image_name in os.listdir('swim_edge'):
     image_name=image_name.split('.')
     image_name=str(image_name[0])
     if count==int(image_name):
-        images_array.append(image_name)
+        swim.append(image_name)
         for image_name in image_dir:
           try:
             location=str(img_path +str(image_name))
@@ -53,14 +52,14 @@ while len(images_array)<len(os.listdir('salsa')) and count<500:
                 Edge = (Edge/np.max(Edge))*3
             else:
                 Overlay=mh.overlay(Image_orig_grey,Edge)
-                image=Edge.astype(np.uint8)*255 # -----------------------> changed to normalize
-                new_image=mh.imresize(image, (224,224)) #change dimensions to 224x224
+                image=Edge.astype(np.uint8)*255
+                new_image=mh.imresize(image, (224,224))
           # convert from Numpy to a list of values
-            images_array.append(new_image)
-            if count%100==0:
+            swim.append(new_image)
+            if count%50==0:
               print(count)
             count+=1
-            if count>2000:
+            if count>2000: #I added this limit because my comp/ google Colab couldn't handle more data than that
               break
           except:
             pass
@@ -68,229 +67,13 @@ while len(images_array)<len(os.listdir('salsa')) and count<500:
   print(count)
 
 
-#Save the list to a file
-
+#Save/ load the list to/from a file
+os.chdir("/content/gdrive/My Drive/Colab Notebooks/Motion_Net")
 import pickle
 
-with open('images_array', 'wb') as fp:
-    pickle.dump(images_array, fp)
-
-#with open ('images_array', 'rb') as fp:
-#    images_array = pickle.load(fp)
-
-
-!git clone https://github.com/JalaliLabUCLA/Image-feature-detection-using-Phase-Stretch-Transform
-!pip install Mahotas
-
-os.chdir("/content/gdrive/My Drive/Colab Notebooks/Image-feature-detection-using-Phase-Stretch-Transform/Python")
-import PST_function
-from PST_function import PST
-from os.path import join
-# [] Need to install mahotas library for morphological operations
-import os
-import numpy as np
-import mahotas as mh
-import matplotlib.pylab as plt
-from itertools import zip_longest
-#import PST_function
-#from PST_function import PST
-
-# [] To process high resolution images set
-# from PIL import Image
-# Image.MAX_IMAGE_PIXELS = 1000000000
-# Replace mh.imread by Image.open
-
-# import sys
-# [] To input filename using command line argument uncomment ^^^
-
-
-# Import the original image
-input_path = os.getcwd() # This is where the code is running.
-filepath = os.path.join(input_path,'../Test_Images/salsa.jpg')  # The images are located in a folder called 'Test_Images' within the root directory from where the code runs.
-
-#filepath = os.path.join(input_path,'../Test_Images/',sys.argv[1])
-# [] To input filename using command line argument uncomment ^^^
-
-Image_orig = mh.imread(filepath) # Read the image.
-# To convert the color image to grayscale
-if Image_orig.ndim ==3:
-    Image_orig_grey = mh.colors.rgb2grey(Image_orig)  # Image_orig is color image.
-else:
-    Image_orig_grey = Image_orig
-
-# Define various
-# low-pass filtering (also called localization kernel) parameter
-LPF = 0.21 # Gaussian Low Pass Filter
-# PST parameters
-Phase_strength = 0.48
-Warp_strength= 12.14
-# Thresholding parameters (for post processing after the edge is computed)
-Threshold_min = -1
-Threshold_max = 0.0019
-# [] Choose to compute the analog or digital edge,
-Morph_flag =1 # [] To compute analog edge, set Morph_flag=0 and to compute digital edge, set Morph_flag=1
-
-
-[Edge, PST_Kernel]= PST(Image_orig_grey, LPF, Phase_strength, Warp_strength, Threshold_min, Threshold_max, Morph_flag)
-
-if Morph_flag ==0:
-    Edge = (Edge/np.max(Edge))*3
-    # Display results
-    def imshow_pair(image_pair, titles=('', ''), figsize=(6, 6), **kwargs):
-        fig, axes = plt.subplots(ncols=len(image_pair), figsize=figsize)
-        for ax, img, label in zip_longest(axes.ravel(), image_pair, titles, fillvalue=''):
-            ax.imshow(img, **kwargs)
-            ax.set_title(label)
-    # show the original image and detected edges
-    print('        Original Image       Edge Detected using PST')
-    imshow_pair((Image_orig, Edge), cmap='gray')
-
-    # Save results
-    default_directory, filename=filepath.split('./Test_Images/')
-    filename, extension = filename.split('.')
-    output_path=default_directory+'./Test_Images/'+filename+'_edge.jpg' # Saving the edge map with the extension tiff
-    mh.imsave(output_path, Edge)
-
-else:
-    Overlay=mh.overlay(Image_orig_grey,Edge)
-
-    # Display results
-    def imshow_pair(image_pair, titles=('', ''), figsize=(10, 6), **kwargs):
-        fig, axes = plt.subplots(ncols=len(image_pair), figsize=figsize)
-        for ax, img, label in zip_longest(axes.ravel(), image_pair, titles, fillvalue=''):
-            ax.imshow(img, **kwargs)
-            ax.set_title(label)
-    # show the original image, detected edges and an overlay of the original image with detected edges
-    print('      Original Image            Edge Detected using PST              Overlay')
-    imshow_pair((Image_orig, Edge, Overlay), cmap='gray')
-
-    # Save results
-    default_directory, filename=filepath.split('./Test_Images/')
-    filename, extension = filename.split('.')
-    output_path=default_directory+'./Test_Images/'+filename+'_edge.jpg' # Saving the edge map with the extension tiff
-    mh.imsave(output_path, Edge.astype(np.uint8)*255)
-    output_path=default_directory+'./Test_Images/'+filename+'_overlay.jpg' # Saving the overlay with the extension tiff
-    mh.imsave(output_path, Overlay)
-
-
-
-###################################################
-'''Clean version to get the image'''
-import os
-import numpy as np
-import mahotas as mh
-import matplotlib.pylab as plt
-from itertools import zip_longest
-
-os.chdir("/content/gdrive/My Drive/Colab Notebooks")
-#folder with images
-image_dir=os.listdir('new')
-img_path = 'new/'
-
-#create a list to hold the array of pixels of each image
-images_array=[]
-count=0
-#place the pixels for each image in the list
-for image_name in image_dir:
-  try:
-    location=str(img_path +str(image_name))
-    Image_orig = mh.imread(location) # Read the image.
-    # To convert the color image to grayscale
-    if Image_orig.ndim ==3:
-        Image_orig_grey = mh.colors.rgb2grey(Image_orig)  # Image_orig is color image.
-        #image.load_img(location, target_size=(224, 224))
-    else:
-        Image_orig_grey = Image_orig
-
-    # Define various
-    # low-pass filtering (also called localization kernel) parameter
-    LPF = 0.21 # Gaussian Low Pass Filter
-    # PST parameters
-    Phase_strength = 0.48
-    Warp_strength= 12.14
-    # Thresholding parameters (for post processing after the edge is computed)
-    Threshold_min = -1
-    Threshold_max = 0.0019
-    # [] Choose to compute the analog or digital edge,
-    Morph_flag =1 # [] To compute analog edge, set Morph_flag=0 and to compute digital edge, set Morph_flag=1
-
-
-    [Edge, PST_Kernel]= PST(Image_orig_grey, LPF, Phase_strength, Warp_strength, Threshold_min, Threshold_max, Morph_flag)
-
-    if Morph_flag ==0:
-        Edge = (Edge/np.max(Edge))*3
-    else:
-        Overlay=mh.overlay(Image_orig_grey,Edge)
-        image=Edge.astype(np.uint8)*255
-        new_image=mh.imresize(image, (224,224)) #change dimensions to 224x224
-  # convert from Numpy to a list of values
-    images_array.append(new_image)
-    if count%100==0:
-      print(count)
-    count+=1
-  except:
-    pass
-
-
-
-#######################################
-'''Extract edges and make sure theyre organized in order'''
-
-os.chdir("/content/gdrive/My Drive/Colab Notebooks")
-#folder with images
-image_dir=os.listdir('salsa')
-img_path = 'salsa/'
-
-#create a list to hold the array of pixels of each image
-images_array=[]
-count=0
-#place the pixels for each image in the list
-while len(images_array)<len(os.listdir('salsa')) and count<500:
-  for image_name in os.listdir('salsa'):
-    image_name=image_name.split('.')
-    image_name=str(image_name[0])
-    if count==int(image_name):
-        images_array.append(image_name)
-        for image_name in image_dir:
-          try:
-            location=str(img_path +str(image_name))
-            Image_orig = mh.imread(location) # Read the image.
-            # To convert the color image to grayscale
-            if Image_orig.ndim ==3:
-                Image_orig_grey = mh.colors.rgb2grey(Image_orig)  # Image_orig is color image.
-                #image.load_img(location, target_size=(224, 224))
-            else:
-                Image_orig_grey = Image_orig
-
-            # Define various
-            # low-pass filtering (also called localization kernel) parameter
-            LPF = 0.21 # Gaussian Low Pass Filter
-            # PST parameters
-            Phase_strength = 0.48
-            Warp_strength= 12.14
-            # Thresholding parameters (for post processing after the edge is computed)
-            Threshold_min = -1
-            Threshold_max = 0.0019
-            # [] Choose to compute the analog or digital edge,
-            Morph_flag =1 # [] To compute analog edge, set Morph_flag=0 and to compute digital edge, set Morph_flag=1
-
-
-            [Edge, PST_Kernel]= PST(Image_orig_grey, LPF, Phase_strength, Warp_strength, Threshold_min, Threshold_max, Morph_flag)
-
-            if Morph_flag ==0:
-                Edge = (Edge/np.max(Edge))*3
-            else:
-                Overlay=mh.overlay(Image_orig_grey,Edge)
-                image=Edge.astype(np.uint8)*255 # -----------------------> changed to normalize
-                new_image=mh.imresize(image, (224,224)) #change dimensions to 224x224
-          # convert from Numpy to a list of values
-            images_array.append(new_image)
-            if count%100==0:
-              print(count)
-            count+=1
-            if count>2000:
-              break
-          except:
-            pass
-  count+=1
-  print(count)
+#Saving
+#with open('swim', 'wb') as fp:
+#    pickle.dump(swim, fp)
+#Loading
+#with open ('images_array3', 'rb') as fp:
+#  images_array3 = pickle.load(fp)
