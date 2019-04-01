@@ -386,7 +386,7 @@ fig = plt.figure(figsize=(20, 10))  # width, height in inches
 for i in range(9):
     sub = fig.add_subplot(3, 3, i + 1)
     sub.imshow(output_images[i,:,:], interpolation='nearest')
-    
+
 
 '''
 plan:
@@ -449,83 +449,3 @@ DONT FORGET THAT THE POINT IS TO PREDICT AT THE END
 ADJUST AS MUCH AS YOU CAN THEN PREDICT
 Make prediction with one input?
 '''
-
-
-#########################
-When you call a model, like this:
-
-logits = model(x_train)
-
-the losses it creates during the forward pass are added to the model.losses attribute:
-
-logits = model(x_train[:64])
-print(model.losses)
-
-The tracked losses are first cleared at the start of the model __call__, so you will only see the losses created during this one forward pass. For instance, calling the model repeatedly and then querying losses only displays the latest losses, created during the last call:
-
-logits = model(x_train[:64])
-logits = model(x_train[64: 128])
-logits = model(x_train[128: 192])
-print(model.losses)
-
-
-##############################
-'''PREDICT'''
-test_list=images_array[1001:1010]
-flat(test_list) #convert it to (9216,)
-test_list[1]
-#output is:
-#array([....]) --> notice that there's only one brackets inside the array. WE NEED 2: array( [ [] ] )
-#convert them to (1, 9216) from (9216,)
-test_list[1]=np.expand_dims(test_list[1],axis=0)
-test_list[2]=np.expand_dims(test_list[2],axis=0)
-test_list[3]=np.expand_dims(test_list[3],axis=0)
-test_list[4]=np.expand_dims(test_list[4],axis=0)
-test_list[5]=np.expand_dims(test_list[5],axis=0)
-test_list[6]=np.expand_dims(test_list[6],axis=0)
-test_list[7]=np.expand_dims(test_list[7],axis=0)
-test_list[8]=np.expand_dims(test_list[8],axis=0)
-test_list[0]=np.expand_dims(test_list[0],axis=0)
-
-(a1,a2,a3,a4,a5,a6,a7,a8,a9)=model.predict([ test_list[0],test_list[1],test_list[2],test_list[3],test_list[4],test_list[5],test_list[6],test_list[7],test_list[8] ])
-#Notice that test_list[i] for all i are all in a list
-
-a1
-#output is:
-#array([[
-#to plot it we need to reshape:
-a1=np.reshape(a1,(96,96))
-a2=np.reshape(a2,(96,96))
-a3=np.reshape(a4,(96,96))
-a4=np.reshape(a4,(96,96))
-a5=np.reshape(a5,(96,96))
-a6=np.reshape(a6,(96,96))
-a7=np.reshape(a7,(96,96))
-a8=np.reshape(a8,(96,96))
-a9=np.reshape(a9,(96,96))
-
-
-#Plotting
-output_image=np.array([a1,a2,a3,a4,a5,a6,a7,a8,a9])
-fig = plt.figure(figsize=(20, 10))  # width, height in inches
-
-for i in range(9):
-    sub = fig.add_subplot(3, 3, i + 1)
-    sub.imshow(output_image[i,:,:], interpolation='nearest')
-
-
-
-#################################
-3/18
-
-Try using  SSIM as loss function?
-
-
-3/23
-focus on 1 angle to see that it works
-
-1. get a video from 1 angle of a person doing activity -YMCA
-2. get another video from the same angle of another person doing the activity
-3. get a video of another activity from the same angle with the 1st person
-4. get a video of another activity from the same angle with the 1st person
-5. compare
