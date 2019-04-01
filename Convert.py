@@ -1,4 +1,4 @@
-'''Program To Read video and Extract Frames'''
+'''Program To read video and extract frames'''
 import cv2
 import os
 
@@ -27,7 +27,7 @@ def FrameCapture(video_path,video_name,images_path):
         count += 1
 
 #Calling the function
-#FrameCapture('C:\\Users\\sagi\\Desktop\\Pool\\swim_edge\\swim_edge.mp4','swim_edge','C:\\Users\\sagi\\Desktop\\Pool\\swim_edge')
+#FrameCapture('path\\swim_edge.mp4','swim_edge','path\\swim_edge')
 
 '''
 Convert multiple videos
