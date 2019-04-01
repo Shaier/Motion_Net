@@ -81,7 +81,7 @@ output_images[6]=output_images[6].astype('float32')
 output_images[7]=output_images[7].astype('float32')
 output_images[8]=output_images[8].astype('float32')
 
-test_list=swim[1:10]
+test_list=test_array[1:10] #a list with test images
 
 frame1=test_list[0].astype('float32')
 frame2=test_list[1].astype('float32')
