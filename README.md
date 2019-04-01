@@ -8,21 +8,23 @@ The architecture currently has 9 inputs (the frames) and 9 outputs (predicted fr
 The idea behind the architecture:  
 Inserting 9 images, getting an output of 9 images.  
 Compare output 1 to input 2, output 2 to input 3... up to output 8 to input 9. (we dont use output 9)
-The model is trained to predict the next image (we trained it on one movement so imagine the first image to be a person raising their right hand, second image the person raising his right hand... etc.).  
+The model is trained to predict the next image (we trained it on one movement so imagine the first frame to be a person raising their right hand, second frame the person lowering his right hand... etc.).  
 So, given a perfect model, the model will know how the next frame should look like.  
 When we insert 9 inputs at the prediction stage, if the model gets 9 images that has different movement (movement that it hasnt seen before), our loss will be high and we'll know that that's the wrong movement.
 
 
 ### The training data is organized as follows:
-train1=[frame1,frame2...frame_N-9]
-train2=[frame2,frame3...frame_N-8]
-train9=[frame9,frame10...frame_N-1] #Note that we go up to N-1 because we need the last frame to be an output
-
+train1=[frame1,frame2...frame_N-9]  
+train2=[frame2,frame3...frame_N-8]  
+train9=[frame9,frame10...frame_N-1] 
+*Note that we go up to N-1 because we need the last frame to be an output  
+  
 *** Look at them from top to bottom: train1[0],train2[0]...train9[0] is sequence 1.
-
-output1=[frame2,frame3...frame_N-8]
-output2=[frame3,frame4...frame_N-7]
-output9=[frame10,frame11...frame_N] #Note that we go up to N because the last frame is an output
+  
+output1=[frame2,frame3...frame_N-8]  
+output2=[frame3,frame4...frame_N-7]  
+output9=[frame10,frame11...frame_N] 
+*Note that we go up to N because the last frame is an output  
 
 
 ### Obtaining data
