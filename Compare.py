@@ -1,29 +1,6 @@
 '''Comparing images'''
-
-'''
-Inserting 9 images, getting an output of 9 images
-compare output 1 to input 2, output 2 to input 3... up to output 8 to input 9. (we dont use output 9)
-
--->MSE is dead simple to implement — but when using it for similarity, we can run into problems. The main one being that large distances
-between pixel intensities do not necessarily mean the contents of the images are dramatically different.
-It’s important to note that a value of 0 for MSE indicates perfect similarity. A value greater than one implies less similarity and
-will continue to grow as the average difference between pixel intensities increases as well.
-In order to remedy some of the issues associated with MSE for image comparison, we have the Structural Similarity Index, developed by Wang et al.:
-
-SSIM attempts to model the perceived change in the structural information of the image, whereas MSE is actually estimating the perceived errors.
-There is a subtle difference between the two, but the results are dramatic.
-Furthermore, the equation in Equation 2 is used to compare two windows (i.e. small sub-samples) rather than the entire image as in MSE.
-Doing this leads to a more robust approach that is able to account for changes in the structure of the image, rather than just the perceived change.
-Unlike MSE, the SSIM value can vary between -1 and 1, where 1 indicates perfect similarity.
-
-
-*****I need to use several inputs/outputs because one frame might look the same but the others not and at the end Ill get a bad score
-if its a different MOVEMENT
-'''
-
-
-!git clone https://github.com/keras-team/keras-contrib
-!git clone https://github.com/keras-team/keras-contrib/tree/master/keras_contrib
+#!git clone https://github.com/keras-team/keras-contrib
+#!git clone https://github.com/keras-team/keras-contrib/tree/master/keras_contrib
 
 # import the necessary packages
 from skimage.measure import structural_similarity as ssim
@@ -110,8 +87,6 @@ for (i, (name, image)) in enumerate(images):
 #show the figure
 plt.show()
 
-#WE NEED TO COMPARE OUTPUT 1 (a1) TO INPUT 2 (images_array2[1] or frame2), OUTPUT 2 (a2) TO INPUT 3 (images_array2[2] or frame3)...
-''''''
 # compare the images
 compare_images(output_images[0], frame2, "output 1 vs input 2")
 compare_images(output_images[1], frame3, "output 2 vs input 3")
