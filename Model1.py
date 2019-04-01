@@ -1,20 +1,5 @@
 '''Motion Net'''
-'''
-THIS MODEL IS MEANT TO ONLY WORK ON ONE MOVEMENT
 
-train1=[frame1,frame2...frame_N-9]
-train2=[frame2,frame3...frame_N-8]
-train9=[frame9,frame10...frame_N-1] #Note that we go up to N-1 because we need the last frame to be an output
-
-*** Look at them from top to bottom: train1[0],train2[0]...train9[0] is sequence 1.
-and
-output1=[frame2,frame3...frame_N-8]
-output2=[frame3,frame4...frame_N-7]
-output9=[frame10,frame11...frame_N] #Note that we go up to N because the last frame is an output
-
-
-
-'''
 #Libraries
 from keras.utils import plot_model
 from keras.models import Model
@@ -42,12 +27,10 @@ from keras.models import load_model
 from keras.models import model_from_json
 %matplotlib inline
 
-os.chdir("/content/gdrive/My Drive/Colab Notebooks")
-os.getcwd()
+#The first image never loaded correctly so I removed it
+shorter_list=images_array[1:] #the list with your edges
 
-
-#Load the data
-
+#Load the data- arrange in sequences
 train1=[]
 train2=[]
 train3=[]
@@ -103,7 +86,7 @@ flat(train7)
 flat(train8)
 flat(train9)
 
-
+# The model
 # 1st input model
 drop_out=0.2
 dense_one=50
@@ -305,8 +288,8 @@ print(model.summary())
 plot_model(model, to_file='model.png')
 
 
-from keras.callbacks import ReduceLROnPlateau
 #Early Stop
+from keras.callbacks import ReduceLROnPlateau
 earlystop = EarlyStopping(patience=2)         # Stop training when `val_loss` is no longer improving
         # "no longer improving" being further defined as "for at least 2 epochs"
 
@@ -343,19 +326,13 @@ ax[1].plot(history.history['loss'], color='b', label="Training loss")
 ax[1].plot(history.history['val_loss'], color='r', label="validation loss",axes =ax[1])
 
 
-#get the Loss
-hist = pd.DataFrame(history.history)
-#hist['epoch'] = history.epoch
-#hist.tail()
-hist[-1:]
 
 #Predicting
-
 #test_list=images_array[1015:1024]
-test_list=images_array[1:10]
-len(test_list)
+test_list=test_array[1:10] #a list with test images
 
 flat(test_list)
+test_list[0]=np.expand_dims(test_list[0],axis=0)
 test_list[1]=np.expand_dims(test_list[1],axis=0)
 test_list[2]=np.expand_dims(test_list[2],axis=0)
 test_list[3]=np.expand_dims(test_list[3],axis=0)
@@ -364,20 +341,33 @@ test_list[5]=np.expand_dims(test_list[5],axis=0)
 test_list[6]=np.expand_dims(test_list[6],axis=0)
 test_list[7]=np.expand_dims(test_list[7],axis=0)
 test_list[8]=np.expand_dims(test_list[8],axis=0)
-test_list[0]=np.expand_dims(test_list[0],axis=0)
 
-(a1,a2,a3,a4,a5,a6,a7,a8,a9)=model.predict([ test_list[0],test_list[1],test_list[2],test_list[3],test_list[4],test_list[5],test_list[6],test_list[7],test_list[8] ])
+#getting the outputs
+(output1,output2,output3,output4,output5,output6,output7,output8,output9)=model.predict([ inputs_list[0],inputs_list[1],inputs_list[2],inputs_list[3],inputs_list[4],inputs_list[5],inputs_list[6],inputs_list[7],inputs_list[8] ])
 
-a1=np.reshape(a1,(224,224))
-a2=np.reshape(a2,(224,224))
-a3=np.reshape(a4,(224,224))
-a4=np.reshape(a4,(224,224))
-a5=np.reshape(a5,(224,224))
-a6=np.reshape(a6,(224,224))
-a7=np.reshape(a7,(224,224))
-a8=np.reshape(a8,(224,224))
-a9=np.reshape(a9,(224,224))
+#Reshape images
 
+#outputs
+output1=np.reshape(output1,(224,224))
+output2=np.reshape(output2,(224,224))
+output3=np.reshape(output4,(224,224))
+output4=np.reshape(output4,(224,224))
+output5=np.reshape(output5,(224,224))
+output6=np.reshape(output6,(224,224))
+output7=np.reshape(output7,(224,224))
+output8=np.reshape(output8,(224,224))
+output9=np.reshape(output9,(224,224))
+
+#inputs
+inputs_list[0]=np.reshape(output1,(224,224))
+inputs_list[1]=np.reshape(output2,(224,224))
+inputs_list[2]=np.reshape(output4,(224,224))
+inputs_list[3]=np.reshape(output4,(224,224))
+inputs_list[4]=np.reshape(output5,(224,224))
+inputs_list[5]=np.reshape(output6,(224,224))
+inputs_list[6]=np.reshape(output7,(224,224))
+inputs_list[7]=np.reshape(output8,(224,224))
+inputs_list[8]=np.reshape(output9,(224,224))
 
 output_image=np.array([a1,a2,a3,a4,a5,a6,a7,a8,a9])
 output_image.shape
