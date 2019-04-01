@@ -369,23 +369,24 @@ inputs_list[6]=np.reshape(output7,(224,224))
 inputs_list[7]=np.reshape(output8,(224,224))
 inputs_list[8]=np.reshape(output9,(224,224))
 
-output_image=np.array([a1,a2,a3,a4,a5,a6,a7,a8,a9])
-output_image.shape
+output_images=np.array([output1,output2,output3,output4,output5,output6,output7,output8,output9])
+output_images.shape
 
 #plot an image
-plt.imshow(output_image[1,:,:])
+plt.imshow(output_images[1,:,:])
 
 #plot a big image
 fig = plt.figure(figsize=(18, 18))
-plt.imshow(a1,cmap='gray')
+plt.imshow(output1,cmap='gray')
 
 
 #plot the sequence of images
 fig = plt.figure(figsize=(20, 10))  # width, height in inches
+
 for i in range(9):
     sub = fig.add_subplot(3, 3, i + 1)
-    sub.imshow(output_image[i,:,:], interpolation='nearest')
-
+    sub.imshow(output_images[i,:,:], interpolation='nearest')
+    
 
 '''
 plan:
