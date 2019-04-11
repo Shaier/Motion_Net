@@ -45,3 +45,5 @@ SSIM attempts to model the perceived change in the structural information of the
 Doing this leads to a more robust approach that is able to account for changes in the structure of the image, rather than just the perceived change.
 Unlike MSE, the SSIM value can vary between -1 and 1, where 1 indicates perfect similarity.  
 ### The model
+  
+   
