@@ -43,7 +43,4 @@ In order to remedy some of the issues associated with MSE for image comparison, 
   
 SSIM attempts to model the perceived change in the structural information of the image, whereas MSE is actually estimating the perceived errors. There is a subtle difference between the two, but the results are dramatic.
 Doing this leads to a more robust approach that is able to account for changes in the structure of the image, rather than just the perceived change.
-Unlike MSE, the SSIM value can vary between -1 and 1, where 1 indicates perfect similarity.  
-### The model
-  
-   
+Unlike MSE, the SSIM value can vary between -1 and 1, where 1 indicates perfect similarity.    
